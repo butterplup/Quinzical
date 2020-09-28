@@ -5,35 +5,34 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: azure;" stylesheets="@../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainMenuController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainMenuController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="274.0" layoutY="82.0" prefHeight="400.0" prefWidth="600.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <VBox alignment="CENTER" layoutX="274.0" layoutY="82.0" prefHeight="400.0" prefWidth="600.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label styleClass="label" text="Quinzical">
+            <Label text="Quinzical">
                <font>
                   <Font size="32.0" />
                </font>
                <styleClass>
-                  <String fx:value="button" />
+                  <String fx:value="title" />
                   <String fx:value="label" />
                </styleClass>
             </Label>
+            <Separator prefHeight="0.0" prefWidth="600.0" />
             <VBox alignment="CENTER" spacing="15.0">
                <children>
-                  <Label text="Modules" styleClass="label" >
+                  <Label styleClass="label" text="Modules">
+                  </Label>
+                  <Button id="practiceBtn" fx:id="practiceBtn" mnemonicParsing="false" onAction="#handlePracticeBtnClick" text="Practice">
+                  </Button>
+                  <Button id="gamesBtn" fx:id="gamesBtn" mnemonicParsing="false" onAction="#handleGamesBtnClick" text="Games">
                      <styleClass>
                         <String fx:value="button" />
-                        <String fx:value="label" />
                      </styleClass>
-                  </Label>
-                  <Button id="practiceBtn" fx:id="practiceBtn" mnemonicParsing="false" onAction="#handlePracticeBtnClick" styleClass="button" text="Practice">
-
-                  </Button>
-                  <Button id="gamesBtn" fx:id="gamesBtn" mnemonicParsing="false" onAction="#handleGamesBtnClick" styleClass="button" text="Games">
-
                   </Button>
                </children>
             </VBox>
+            <Button mnemonicParsing="false" onAction="#handleExitBtnClick" text="Exit" />
          </children>
       </VBox>
    </children>

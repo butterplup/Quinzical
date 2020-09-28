@@ -1,11 +1,11 @@
 .root {
-    -fx-background-color: azure;
+    -fx-background-color: #00247d;
 }
 
 .button {
-    -fx-background-color: #46237a;
-    -fx-border-color: #ffba49;
-    -fx-text-fill: white;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cc142b;
+    -fx-text-fill: #00247d;
     -fx-border-radius: 4px;
     -fx-text-alignment: center;
     -fx-cursor: pointer;
@@ -16,14 +16,16 @@
 }
 
 .button:hover {
-    -fx-background-color: #ffba49;
-    -fx-border-color: #46237a;
-    -fx-text-fill: #23001e;
+    -fx-background-color: #cc142b;
+    -fx-border-color: #cc142b;
+    -fx-text-fill: #ffffff;
+    -fx-border-radius: 4px;
 }
 
 .button:pressed {
-    -fx-background-color: #ffba49;
-    -fx-text-fill: #23001e;
+    -fx-background-color: #cc142b;
+    -fx-border-color: #00247d;
+    -fx-text-fill: #ffffff;
     -fx-background-size: 90%;
     -fx-background-position: center;
 }
@@ -34,9 +36,16 @@
 
 }
 
+.title {
+    -fx-font-size: 32px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #00247d;
+
+}
+
 .label {
-    -fx-text-fill: #46237a;
-    -fx-background-color: azure;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #00247d;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-font-family: sans-serif;
