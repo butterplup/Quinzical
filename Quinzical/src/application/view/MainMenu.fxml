@@ -32,7 +32,7 @@
                   </Button>
                </children>
             </VBox>
-            <Button mnemonicParsing="false" onAction="#handleExitBtnClick" text="Exit" />
+            <Button fx:id="exitBtn" mnemonicParsing="false" onAction="#handleExitBtnClick" text="Exit" />
          </children>
       </VBox>
    </children>
