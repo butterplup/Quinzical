@@ -1,4 +1,4 @@
-package jeopardy;
+package gamelogic;
 
 
 public class SpeakerThread extends Thread {
