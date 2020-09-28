@@ -10,10 +10,8 @@ public class MainMenuController {
 
     @FXML
     private Button gamesBtn;
-
     @FXML
     private Button practiceBtn;
-    
     @FXML
     private Button exitBtn;
 
@@ -25,6 +23,12 @@ public class MainMenuController {
     @FXML
     public void handlePracticeBtnClick() {
         System.out.println("Prac Button clicked");
+    }
+    
+    @FXML
+    public void handleSettingsBtnClick() {
+        System.out.println("Settings Button clicked");
+
     }
     
     /**
