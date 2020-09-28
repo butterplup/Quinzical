@@ -1,0 +1,45 @@
+.root {
+    -fx-background-color: azure;
+}
+
+.button {
+    -fx-background-color: #46237a;
+    -fx-border-color: #ffba49;
+    -fx-text-fill: white;
+    -fx-border-radius: 4px;
+    -fx-text-alignment: center;
+    -fx-cursor: pointer;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: sans-serif;
+
+}
+
+.button:hover {
+    -fx-background-color: #ffba49;
+    -fx-border-color: #46237a;
+    -fx-text-fill: #23001e;
+}
+
+.button:pressed {
+    -fx-background-color: #ffba49;
+    -fx-text-fill: #23001e;
+    -fx-background-size: 90%;
+    -fx-background-position: center;
+}
+
+.button:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: not-allowed;
+
+}
+
+.label {
+    -fx-text-fill: #46237a;
+    -fx-background-color: azure;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: sans-serif;
+    -fx-text-alignment: center;
+
+}
