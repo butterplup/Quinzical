@@ -1,13 +1,33 @@
 package gamelogic;
 
+import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
-//
-public class QuestionBank {
+/*
+ * Randomisation--> shuffling qBank, we can mess with qBank any way we want
+ * since practice module will use different qBank instance.
+ */
+public class QuestionBank implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<Category> _categories = new ArrayList<Category>();
+	
 	public void saveState() {}
 	public void loadState() {}
+	
+	public QuestionBank() {
+		File directory = new File("categories");
+		   File categoryList[] = directory.listFiles();
+		   for (File category: categoryList)
+		   {
+			   _categories.add(new Category(category));
+		   }
+	}
 	
 	public void ask(int CatIndex, int QstnIndex) {
 		//access categorylist, ask question
@@ -20,17 +40,18 @@ public class QuestionBank {
 		return correct;
 	}
 	
-	public int[][] getRandom(){
-		//get 5 unique random category indices
-		//for all random categories, get 5 unique character indices.
-		//
-		int[][] dummyOutput = {{0,0,0,0,0},
-				{0,0,0,0,0},
-				{0,0,0,0,0},
-				{0,0,0,0,0},
-				{0,0,0,0,0},
-				{0,0,0,0,0}};
-		return dummyOutput;
+	public void shuffle() {
+		Collections.shuffle(_categories);
+		for (Category cat: _categories) {
+			cat.shuffle();
+		}
+	}
+	
+	public List<String> getFirst5Cat(){
+		List<String> output = new ArrayList<String>();
+		for (int i=0; i<=4;i++) {
+			output.add(_categories.get(i).getName());
+		}
+		return output;
 	}
 }
-
