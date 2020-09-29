@@ -29,7 +29,9 @@ public class Question implements Serializable{
 		if (answer.equalsIgnoreCase(_answer))//Answer was correct
 		{
 			//winnings.add
+		
 			say("Your answer was correct!");
+			
 			return true;
 		}
 		else {//Answer was wrong			

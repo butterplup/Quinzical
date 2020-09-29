@@ -36,11 +36,6 @@ public class Category implements Serializable{
         }
 	}
 	
-//	public int[] getRandom() {
-//		int [] output = {0,0,0,0,0};
-//		return output;
-//	}
-	
 	public void shuffle() {
 		Collections.shuffle(_questions);
 	}

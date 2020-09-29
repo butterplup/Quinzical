@@ -1,5 +1,8 @@
 package application;
 
+import java.util.Arrays;
+
+import gamelogic.GameBoard;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -30,7 +33,9 @@ public class Main extends Application{
             primaryStage.setResizable(false);
             //primaryStage.sizeToScene();
             primaryStage.show();
-
+            
+            
+            
         } catch(Exception e) {
             e.printStackTrace();
         } 
