@@ -36,10 +36,6 @@ public class GameMenuController implements Initializable {
             
             // Change layout from practice menu to main menu
             anchor.getChildren().setAll(rootLayout);
-            
-            // Adjust bounds of stage
-            mainStage.setHeight(400.0);
-            mainStage.setWidth(600.0);
 
         } catch(Exception e) {
         	// Print in case of any errors

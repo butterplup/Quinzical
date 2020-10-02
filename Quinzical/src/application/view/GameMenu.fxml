@@ -44,12 +44,15 @@
                <top>
                   <Label text="Clue Selection" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets top="15.0" />
+                        <Insets top="5.0" />
                      </BorderPane.margin>
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding>
                   </Label>
                </top>
                <center>
-                  <GridPane BorderPane.alignment="CENTER">
+                  <GridPane alignment="CENTER" hgap="5.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,12 +69,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Label alignment="CENTER" text="Cat 1" />
-                        <Label alignment="CENTER" text="Cat 2" GridPane.columnIndex="1" />
-                        <Label alignment="CENTER" text="Cat 3" GridPane.columnIndex="2" />
-                        <Label alignment="CENTER" text="Cat 4" GridPane.columnIndex="3" />
-                        <Label alignment="CENTER" text="Cat 5" GridPane.columnIndex="4" />
-                        <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" text="Category 1" />
+                        <Label alignment="CENTER" text="Category 2" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" text="Category 3" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" text="Category 4" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" text="Category 5" GridPane.columnIndex="4" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="100" GridPane.rowIndex="1" />
                         <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                         <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="3" GridPane.rowIndex="1" />
@@ -97,6 +100,9 @@
                         <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.columnIndex="3" GridPane.rowIndex="5" />
                         <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                      </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" />
+                     </padding>
                   </GridPane>
                </center>
             </BorderPane>

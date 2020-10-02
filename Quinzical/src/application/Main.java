@@ -24,11 +24,9 @@ public class Main extends Application{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
 
-            Scene scene = new Scene(rootLayout, 400, 600);
+            Scene scene = new Scene(rootLayout, 600, 400);
             scene.getStylesheets().add(getClass().getResource("css/quinzicalStyles.css").toExternalForm());
 
-            primaryStage.setMinHeight(300.0);
-            primaryStage.setMinWidth(200.0);
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
             primaryStage.show();
