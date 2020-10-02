@@ -24,7 +24,7 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1167b1;">
                            <children>
-                              <Slider fx:id="voiceSlider" blockIncrement="0.25" layoutX="128.0" layoutY="93.0" majorTickUnit="1.0" max="2.0" min="0.25" onDragDone="#handleVoiceSpeedChange" showTickLabels="true" showTickMarks="true" value="1.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="90.0" />
+                              <Slider fx:id="voiceSlider" blockIncrement="0.25" layoutX="128.0" layoutY="93.0" majorTickUnit="1.0" max="2.0" min="0.25" onDragDetected="#handleVoiceSpeedChange" onDragDropped="#handleVoiceSpeedChange" onMouseDragReleased="#handleVoiceSpeedChange" showTickLabels="true" showTickMarks="true" style="-fx-control-inner-background: #cc142b; -fx-text-fill: white;" value="1.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="90.0" />
                               <Label layoutX="116.0" layoutY="35.0" text="Voice Speed">
                                  <padding>
                                     <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
