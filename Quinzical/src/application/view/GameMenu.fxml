@@ -9,12 +9,12 @@
    <children>
       <BorderPane prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <Label alignment="CENTER" layoutX="223.0" layoutY="39.0" text="Games Module">
+            <Label alignment="CENTER" layoutX="223.0" layoutY="39.0" text="Games Module" BorderPane.alignment="CENTER">
                <font>
                   <Font size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets right="50.0" />
+                  <Insets bottom="20.0" right="50.0" />
                </BorderPane.margin>
             </Label>
          </center>
@@ -25,7 +25,7 @@
                </BorderPane.margin></Button>
          </left>
       </BorderPane>
-      <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="90.0" />
+      <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="80.0" />
       <StackPane layoutY="100.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
 		 	<BorderPane opacity="0.0" prefHeight="200.0" prefWidth="200.0">
@@ -47,7 +47,7 @@
                         <Insets top="5.0" />
                      </BorderPane.margin>
                      <padding>
-                        <Insets bottom="10.0" />
+                        <Insets top="-10.0" />
                      </padding>
                   </Label>
                </top>
