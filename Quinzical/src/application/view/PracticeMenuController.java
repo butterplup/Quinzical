@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -20,10 +21,18 @@ public class PracticeMenuController implements Initializable {
     private Button backBtn;
     @FXML
     private AnchorPane anchor;
+    @FXML
+    private BorderPane selectorPane;
+    @FXML
+    private BorderPane cluePane;
 
     public void handleCategorySelected() {
         System.out.println("Category selected: " + selectCategory.getValue());
         // Make category selector BorderPane opacity = 0
+        selectorPane.setOpacity(0);
+        // Make question presenter BorderPane opacity = 1
+        cluePane.setOpacity(1);
+        cluePane.toFront();
         // Make question presenter BorderPane opacity = 1
     }
     

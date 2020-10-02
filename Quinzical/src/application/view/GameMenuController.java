@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import java.net.URL;
@@ -18,10 +18,18 @@ public class GameMenuController implements Initializable {
     private Button backBtn;
     @FXML
     private AnchorPane anchor;
+    @FXML
+    private BorderPane selectionPane;
+    @FXML
+    private BorderPane cluePane;
 
     public void handleClueSelected() {
         // Make category selector BorderPane opacity = 0
+        selectionPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1
+        cluePane.setOpacity(1);
+        cluePane.toFront();
+
     }
     
     public void handleBackBtnClick() {
