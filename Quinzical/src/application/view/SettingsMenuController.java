@@ -4,6 +4,7 @@ import application.Main;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -13,6 +14,10 @@ public class SettingsMenuController {
     private Button backBtn;
     @FXML
     private AnchorPane anchor;
+    @FXML
+    private Slider voiceSlider;
+    @FXML
+    private Button defaultSpeedBtn;
 
     public void handleBackBtnClick() {
         System.out.println("Back");
@@ -31,6 +36,16 @@ public class SettingsMenuController {
             // Print in case of any errors
             e.printStackTrace();
         }
+    }
+
+    public void handleVoiceSpeedChange() {
+        System.out.println("You have chosen to set speed to " + voiceSlider.getValue() + "x");
+
+    }
+
+    public void handleDefaultSpeedBtn() {
+        voiceSlider.setValue(1);
+        System.out.println("Speed set to 1x");
     }
 
 }
