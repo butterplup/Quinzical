@@ -13,11 +13,16 @@
                <font>
                   <Font size="36.0" />
                </font>
+               <BorderPane.margin>
+                  <Insets right="50.0" />
+               </BorderPane.margin>
             </Label>
          </center>
          <left>
-         	<Button text="←" fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtnClick">
-         	</Button>
+         	<Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtnClick" text="←">
+               <BorderPane.margin>
+                  <Insets left="15.0" top="15.0" />
+               </BorderPane.margin></Button>
          </left>
       </BorderPane>
       <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="90.0" />
@@ -36,20 +41,64 @@
 		           </center>
 		    </BorderPane>
             <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <center>
-                  <ChoiceBox fx:id="selectCategory" onAction="#handleCategorySelected" prefWidth="150.0" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets bottom="50.0" />
-                     </BorderPane.margin>
-                  </ChoiceBox>
-               </center>
                <top>
-                  <Label text="Category Selection" BorderPane.alignment="CENTER">
+                  <Label text="Clue Selection" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets top="15.0" />
                      </BorderPane.margin>
                   </Label>
                </top>
+               <center>
+                  <GridPane BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" text="Cat 1" />
+                        <Label alignment="CENTER" text="Cat 2" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" text="Cat 3" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" text="Cat 4" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" text="Cat 5" GridPane.columnIndex="4" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="100" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="200" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="200" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="200" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="200" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="300" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="300" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="300" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="300" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="300" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="400" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="400" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="400" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="400" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="400" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" mnemonicParsing="false" text="500" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </center>
             </BorderPane>
          </children></StackPane>
    </children>

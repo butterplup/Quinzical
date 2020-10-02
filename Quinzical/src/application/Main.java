@@ -22,9 +22,9 @@ public class Main extends Application{
 		try {
 
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
+            AnchorPane rootLayout = loader.load();
 
-            Scene scene = new Scene(rootLayout, 300, 200);
+            Scene scene = new Scene(rootLayout, 400, 600);
             scene.getStylesheets().add(getClass().getResource("css/quinzicalStyles.css").toExternalForm());
 
             primaryStage.setMinHeight(300.0);

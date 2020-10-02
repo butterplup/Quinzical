@@ -16,39 +16,41 @@ public class MainMenuController {
     private Button practiceBtn;
     @FXML
     private Button exitBtn;
-    
     @FXML
     private AnchorPane anchor;
 
     @FXML
     public void handleGamesBtnClick() {
         System.out.println("Game Button clicked");
+        this.loadFXML("GameMenu");
     }
 
     @FXML
     public void handlePracticeBtnClick() {
         System.out.println("Prac Button clicked");
-        Stage mainStage = (Stage) practiceBtn.getScene().getWindow();
-        try {
-
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/PracticeMenu.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
-            anchor.getChildren().setAll(rootLayout);
-
-            mainStage.setHeight(400.0);
-            mainStage.setWidth(600.0);
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        } 
+        this.loadFXML("PracticeMenu");
     }
     
     @FXML
     public void handleSettingsBtnClick() {
         System.out.println("Settings Button clicked");
 
+        this.loadFXML("SettingsMenu");
+
     }
-    
+
+    public void loadFXML(String file) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/"+ file + ".fxml"));
+            AnchorPane rootLayout = loader.load();
+            anchor.getChildren().setAll(rootLayout);
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * This handles when the exit button is clicked, closing the stage
      * and saving the current game states.

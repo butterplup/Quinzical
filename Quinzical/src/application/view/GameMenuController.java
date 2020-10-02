@@ -15,14 +15,11 @@ import application.Main;
 public class GameMenuController implements Initializable {
 
     @FXML
-    private ChoiceBox<String> selectCategory;
-    @FXML
     private Button backBtn;
     @FXML
     private AnchorPane anchor;
 
-    public void handleCategorySelected() {
-        System.out.println("Category selected: " + selectCategory.getValue());
+    public void handleClueSelected() {
         // Make category selector BorderPane opacity = 0
         // Make question presenter BorderPane opacity = 1
     }
@@ -35,7 +32,7 @@ public class GameMenuController implements Initializable {
         try {
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
-            AnchorPane rootLayout = (AnchorPane) loader.load();
+            AnchorPane rootLayout = loader.load();
             
             // Change layout from practice menu to main menu
             anchor.getChildren().setAll(rootLayout);
@@ -54,7 +51,6 @@ public class GameMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	
     	// Make some call to the gameboard object to get all the actual categories
-        selectCategory.getItems().addAll("Animals", "Countries", "Food");
     	
     }
     
