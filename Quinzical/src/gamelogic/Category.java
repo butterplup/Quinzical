@@ -40,9 +40,10 @@ public class Category implements Serializable{
 		Collections.shuffle(_questions);
 	}
 	
-	public void ask(int qstnindex)
+	public String ask(int qstnindex)
 	{
-		_questions.get(qstnindex).ask();
+		return _questions.get(qstnindex).ask();
+		
 	}
 	
 	public boolean answer(int qstnindex, String answer)

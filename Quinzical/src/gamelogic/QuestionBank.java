@@ -29,9 +29,9 @@ public class QuestionBank implements Serializable{
 		   }
 	}
 	
-	public void ask(int CatIndex, int QstnIndex) {
+	public String ask(int CatIndex, int QstnIndex) {
 		//access categorylist, ask question
-		_categories.get(CatIndex).ask(QstnIndex);
+		return _categories.get(CatIndex).ask(QstnIndex);
 	}
 	
 	public boolean answer(int CatIndex, int qstnindex, String answer)
@@ -44,6 +44,15 @@ public class QuestionBank implements Serializable{
 		Collections.shuffle(_categories);
 		for (Category cat: _categories) {
 			cat.shuffle();
+		}
+	}
+	
+	public void shuffleCat(String category) {
+		for (Category cat: _categories) {
+			if (cat.getName().equals(category))
+			{
+				cat.shuffle();
+			}
 		}
 	}
 	
