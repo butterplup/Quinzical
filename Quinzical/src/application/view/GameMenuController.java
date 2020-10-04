@@ -35,6 +35,7 @@ public class GameMenuController implements Initializable {
     private List<String> _categories;
 
     public void handleClueSelected(ActionEvent event) {
+    	System.out.println("Clue selected");
         Button clickedBtn = (Button) event.getSource();
 
         int questionIndex = GridPane.getRowIndex(clickedBtn) - 1;
@@ -73,19 +74,33 @@ public class GameMenuController implements Initializable {
         _categories = _gameBoard.getCategoryNames();
         ObservableList<Node> gridNodes = clueGrid.getChildren();
 
+    	int catVal;
+    	int clueVal;
         for (Node node: gridNodes) {
-            if (GridPane.getRowIndex(node) == 0) {
+        	
+        	if (GridPane.getRowIndex(node) == null) { 
+        		clueVal = 0;
+        	} else {
+        		clueVal = GridPane.getRowIndex(node).intValue();
+        	}
+        	if (GridPane.getColumnIndex(node) == null) { 
+        		catVal = 0; 
+        	} else {
+        		catVal = GridPane.getColumnIndex(node).intValue();
+        	}
+        	
+            if (clueVal == 0) {
                 for (int i = 0; i < 6 ; i++) {
-                    if (GridPane.getColumnIndex(node) == i) {
+                    if (catVal == i) {
                         Label catLabel = (Label) node;
                         catLabel.setText(_categories.get(i));
                     }
                 }
-            } else if (_gameBoard.isCompleted(GridPane.getRowIndex(node)-1,GridPane.getColumnIndex(node))) {
+            } else if (_gameBoard.isCompleted(clueVal-1,catVal)) {
                 Button clueBtn = (Button) node;
                 clueBtn.setDisable(true);
-            } else if (GridPane.getRowIndex(node) != 1) {
-                if (_gameBoard.isCompleted(GridPane.getRowIndex(node)-2,GridPane.getColumnIndex(node))) {
+            } else if (clueVal != 1) {
+                if (_gameBoard.isCompleted(clueVal-2,catVal)) {
                     Button clueBtn = (Button) node;
                     clueBtn.setDisable(false);
                 }
