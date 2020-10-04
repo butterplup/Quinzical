@@ -55,4 +55,16 @@ public class Category implements Serializable{
 	public String getName() {
 		return _name;
 	}
+
+	public String getQPrompt(int questionIndex) {
+		return _questions.get(questionIndex).getPrompt();
+	}
+
+	public String getQHint(int questionIndex) {
+		return _questions.get(questionIndex).getHint();
+	}
+
+	public String getQAnswer(int questionIndex) {
+		return _questions.get(questionIndex).getAnswer();
+	}
 }

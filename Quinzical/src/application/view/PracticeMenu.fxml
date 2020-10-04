@@ -28,19 +28,78 @@
       <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="90.0" />
       <StackPane layoutY="100.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
+            <BorderPane fx:id="correctPane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" text="Your answer was correct! Good job!" />
+                        <Button mnemonicParsing="false" onAction="#handleBackBtnClick" text="Ok" />
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="50.0" />
+                     </BorderPane.margin></VBox>
+               </center>
+               <top>
+                  <Label text="Result" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="15.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+            </BorderPane>
+            <BorderPane fx:id="incorrectPane" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" text="Your answer was incorrect." />
+                        <Label fx:id="hintLabel" text="Hint: Remeber to spell it correctly!" />
+                        <HBox fx:id="incorrectBtns" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                           <children>
+                              <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#handleRetryBtnClick" text="Try again?" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="50.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </center>
+               <top>
+                  <Label text="Result" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="15.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+            </BorderPane>
 		 	<BorderPane fx:id="cluePane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
 		           <top>
-		              <Label text="Question" BorderPane.alignment="CENTER">
+		              <Label text="Clue" BorderPane.alignment="CENTER">
 		                 <BorderPane.margin>
 		                    <Insets top="15.0" />
 		                 </BorderPane.margin>
 		              </Label>
 		           </top>
 		           <center>
-		              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+		              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label fx:id="clueText" text="This is the clue." />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label fx:id="promptLabel" alignment="CENTER" text="Prompt: " />
+                              <TextField fx:id="answerField" alignment="CENTER" promptText="Type answer here" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="110.0" text="Repeat Clue" />
+                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="110.0" text="Submit Answer" />
+                           </children>
+                        </HBox>
+                     </children></VBox>
 		           </center>
 		    </BorderPane>
-            <BorderPane fx:id="selectorPane" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="selectorPane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <ChoiceBox fx:id="selectCategory" onAction="#handleCategorySelected" prefWidth="150.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>

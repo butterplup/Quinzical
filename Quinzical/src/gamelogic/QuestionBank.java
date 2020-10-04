@@ -11,9 +11,7 @@ import java.util.List;
  * since practice module will use different qBank instance.
  */
 public class QuestionBank implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	private List<Category> _categories = new ArrayList<Category>();
 	
@@ -30,7 +28,7 @@ public class QuestionBank implements Serializable{
 	}
 	
 	public String ask(int CatIndex, int QstnIndex) {
-		//access categorylist, ask question
+		//access category list, ask question
 		return _categories.get(CatIndex).ask(QstnIndex);
 	}
 	
@@ -47,11 +45,11 @@ public class QuestionBank implements Serializable{
 		}
 	}
 	
-	public void shuffleCat(String category) {
-		for (Category cat: _categories) {
-			if (cat.getName().equals(category))
+	public void shuffleCat(String categoryName) {
+		for (Category category: _categories) {
+			if (category.getName().equals(categoryName))
 			{
-				cat.shuffle();
+				category.shuffle();
 			}
 		}
 	}
@@ -63,4 +61,25 @@ public class QuestionBank implements Serializable{
 		}
 		return output;
 	}
+
+	public List<String> getAllCategories() {
+		List<String> output = new ArrayList<String>();
+
+		for (Category category : _categories) {
+			output.add(category.getName());
+		}
+
+		return output;
+	}
+
+	public Category getCategory(String categoryName) {
+		for (Category category: _categories) {
+			if (category.getName().equals(categoryName))
+			{
+				return category;
+			}
+		}
+		return null;
+	}
+
 }

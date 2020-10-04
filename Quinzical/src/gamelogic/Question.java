@@ -13,6 +13,7 @@ public class Question implements Serializable{
 	private String _question;
 	private String[] _answer;
 	private String _whatX;
+
 	public Question(String question, String answer, String whatX) {
 //		_reward = reward;
 		
@@ -52,5 +53,34 @@ public class Question implements Serializable{
 		TtsHandler tts = new TtsHandler();
 		tts.loadSpeed();
 		tts.say(message);
+	}
+
+	public String getPrompt() {
+		return _whatX;
+	}
+
+	public String getHint() {
+		String hint = "Hint: First letter of answer";
+
+		if (_answer.length > 1) {
+			for (int i = 0; i < _answer.length - 1; i++) {
+				hint = hint + "s: " + _answer[i].charAt(0) + " or ";
+			}
+		} else {
+			hint = hint + ": ";
+		}
+		return hint + _answer[_answer.length - 1].charAt(0);
+	}
+
+	public String getAnswer() {
+		String answer = "";
+
+		if (_answer.length > 1) {
+			for (int i = 0; i < _answer.length - 1; i++) {
+				answer = answer + _answer[i].charAt(0) + " or ";
+			}
+
+		}
+		return answer + _answer[_answer.length - 1];
 	}
 }
