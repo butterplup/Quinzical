@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.scene.layout.VBox;
 
 public class PracticeMenuController implements Initializable {
     // For choosing the first index of the category
@@ -35,6 +36,8 @@ public class PracticeMenuController implements Initializable {
     private BorderPane incorrectPane;
     @FXML
     private HBox incorrectBtns;
+    @FXML
+    private VBox incorrectLabels;
     @FXML
     private Label clueText;
     @FXML
@@ -126,7 +129,8 @@ public class PracticeMenuController implements Initializable {
 
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
-                hintLabel.setText("No more attempts.\nThe clue was: \n" + _questionStr + "\nThe correct answer was: \n" + _selectedCategory.getQAnswer(Q_INDEX));
+                hintLabel.setText("No more attempts.\nThe clue was: \n" + _questionStr);
+                incorrectLabels.getChildren().add(2,new Label("The correct answer was: \n" + _selectedCategory.getQAnswer(Q_INDEX)));
                 retryBtn.setDisable(true);
                 Button returnBtn = new Button("Return to menu");
                 returnBtn.setOnAction(e -> handleBackBtnClick());
