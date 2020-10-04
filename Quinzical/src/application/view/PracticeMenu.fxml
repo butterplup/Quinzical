@@ -49,10 +49,10 @@
             </BorderPane>
             <BorderPane fx:id="incorrectPane" layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <VBox fx:id="incorrectLabels" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" BorderPane.alignment="CENTER">
+                  <VBox fx:id="incorrectLabels" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label alignment="CENTER" text="Your answer was incorrect." />
-                        <Label fx:id="hintLabel" text="Hint: Remeber to spell it correctly!" />
+                        <Label fx:id="hintLabel" text="Hint: Remember to spell it correctly!" />
                         <HBox fx:id="incorrectBtns" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
                               <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#handleRetryBtnClick" text="Try again?" />
@@ -67,7 +67,7 @@
                <top>
                   <Label text="Result" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets top="15.0" />
+                        <Insets bottom="15.0" top="15.0" />
                      </BorderPane.margin>
                   </Label>
                </top>

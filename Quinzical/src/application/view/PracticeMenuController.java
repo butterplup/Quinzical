@@ -129,8 +129,9 @@ public class PracticeMenuController implements Initializable {
 
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
-                hintLabel.setText("No more attempts.\nThe clue was: \n" + _questionStr);
-                incorrectLabels.getChildren().add(2,new Label("The correct answer was: \n" + _selectedCategory.getQAnswer(Q_INDEX)));
+                hintLabel.setText("No more attempts.");
+                incorrectLabels.getChildren().add(2,new Label("The clue was: " + _questionStr));
+                incorrectLabels.getChildren().add(3,new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX)));
                 retryBtn.setDisable(true);
                 Button returnBtn = new Button("Return to menu");
                 returnBtn.setOnAction(e -> handleBackBtnClick());
