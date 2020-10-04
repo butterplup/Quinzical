@@ -8,13 +8,13 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 /*
- * Call constructor every time you wnat to use tts:
- * usage: new TtsHandler(message); loads speed and says message
+ * Call constructor every time you want to use tts:
+ * usage: new TtsHandler(); obj.loadSpeed(); obj.say(message) loads speed and says message
  */
 public class TtsHandler {
 	double _speed = 1; 
 
-	public void loadSpeed() {
+	public boolean loadSpeed() {
 		File f = new File("/tmp/ttsspeed.ser");
 		if (f.exists() && !f.isDirectory()) {
 			// do something
@@ -25,18 +25,19 @@ public class TtsHandler {
 				in.close();
 				fileIn.close();
 				System.out.println(_speed + " ttspeed.ser loaded");
+				return true;
 			} catch (IOException i) {
 				i.printStackTrace();
-				return;
+				return false;
 			} catch (ClassNotFoundException c) {
 				System.out.println("existing ttsspeed not found");
 				c.printStackTrace();
-				return;
+				return false;
 			}
 
 		}
 		else
-			return;
+			return false;
 	}
 	
 	public void saveSpeed(double speed) {
@@ -54,7 +55,7 @@ public class TtsHandler {
 		}
 	}
 	
-	public void say(String string) {
-		new SpeakerThread(string, _speed).start();
+	public void say(String message) {
+		new SpeakerThread(message, _speed).start();
 	}
 }
