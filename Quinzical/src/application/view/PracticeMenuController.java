@@ -18,13 +18,11 @@ import java.util.ResourceBundle;
 import application.Main;
 
 public class PracticeMenuController implements Initializable {
-
+    // For choosing the first index of the category
     private final int Q_INDEX = 1;
 
     @FXML
     private ChoiceBox<String> selectCategory;
-    @FXML
-    private Button backBtn;
     @FXML
     private AnchorPane anchor;
     @FXML
@@ -65,6 +63,16 @@ public class PracticeMenuController implements Initializable {
 
         // Reads out the clue and returns the String representation
         _questionStr = _selectedCategory.ask(Q_INDEX);
+
+        if (_questionStr.length() > 50) {
+            for (int i = 40; i < _questionStr.length(); i++) {
+                if (_questionStr.charAt(i) == ' ') {
+                    _questionStr = _questionStr.substring(0, i) + "...\n" + _questionStr.substring(i);
+                    break;
+                }
+            }
+        }
+
         // Set the clue label to display to user, and the corresponding prompt (e.g "what is: ")
         clueText.setText(_questionStr);
         promptLabel.setText(_selectedCategory.getQPrompt(Q_INDEX) + ": ");
@@ -117,7 +125,7 @@ public class PracticeMenuController implements Initializable {
 
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
-                hintLabel.setText("No more attempts. The correct answer was: \n" + _selectedCategory.getQAnswer(Q_INDEX));
+                hintLabel.setText("No more attempts.\nThe clue was: \n" + _questionStr + "\nThe correct answer was: \n" + _selectedCategory.getQAnswer(Q_INDEX));
                 retryBtn.setDisable(true);
                 Button returnBtn = new Button("Return to menu");
                 returnBtn.setOnAction(e -> handleBackBtnClick());

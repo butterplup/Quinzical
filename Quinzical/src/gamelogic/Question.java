@@ -44,8 +44,8 @@ public class Question implements Serializable{
 				return true;
 			}
 		}
-		
-		say("false, the correct answer was " + _answer[0]);
+		say("Sorry, but that was incorrect");
+		//say("false, the correct answer was " + _answer[0]);
 		return false;
 	}
 
@@ -77,7 +77,7 @@ public class Question implements Serializable{
 
 		if (_answer.length > 1) {
 			for (int i = 0; i < _answer.length - 1; i++) {
-				answer = answer + _answer[i].charAt(0) + " or ";
+				answer = answer + _answer[i] + " or ";
 			}
 
 		}
