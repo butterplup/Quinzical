@@ -41,7 +41,6 @@ public class GameMenuController implements Initializable {
         int questionIndex = GridPane.getRowIndex(clickedBtn) - 1;
         int categoryIndex = GridPane.getColumnIndex(clickedBtn);
 
-
         // Make category selector BorderPane opacity = 0
         selectionPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1
@@ -114,7 +113,6 @@ public class GameMenuController implements Initializable {
         _gameBoard = new GameBoard();
         // Reflect any loaded state in GUI
         loadBoardState();
-        
 
 
     }

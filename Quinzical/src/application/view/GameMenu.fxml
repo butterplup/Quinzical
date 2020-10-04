@@ -74,31 +74,31 @@
                         <Label alignment="CENTER" text="Category 3" GridPane.columnIndex="2" />
                         <Label alignment="CENTER" text="Category 4" GridPane.columnIndex="3" />
                         <Label alignment="CENTER" text="Category 5" GridPane.columnIndex="4" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="\$100" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" text="\$100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" text="\$100" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" text="\$100" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" mnemonicParsing="false" text="\$100" GridPane.columnIndex="4" GridPane.rowIndex="1" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$200" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$200" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$200" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$200" GridPane.columnIndex="4" GridPane.rowIndex="2" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$300" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$300" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$300" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$300" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$300" GridPane.columnIndex="4" GridPane.rowIndex="3" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$400" GridPane.rowIndex="4" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$400" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$400" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$400" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$400" GridPane.columnIndex="4" GridPane.rowIndex="4" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$500" GridPane.rowIndex="5" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$500" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$500" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$500" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" text="\$500" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="4" GridPane.rowIndex="5" />
                      </children>
                      <padding>
                         <Insets bottom="10.0" left="10.0" />
