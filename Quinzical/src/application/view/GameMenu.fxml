@@ -30,7 +30,7 @@
          <children>
 		 	<BorderPane fx:id="cluePane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
 		           <top>
-		              <Label text="Question" BorderPane.alignment="CENTER">
+		              <Label text="Clue" textFill="RED" BorderPane.alignment="CENTER">
 		                 <BorderPane.margin>
 		                    <Insets top="15.0" />
 		                 </BorderPane.margin>
@@ -42,7 +42,7 @@
 		    </BorderPane>
             <BorderPane fx:id="selectionPane" prefHeight="200.0" prefWidth="200.0">
                <top>
-                  <Label text="Clue Selection" BorderPane.alignment="CENTER">
+                  <Label text="Clue Selection" textFill="RED" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets top="5.0" />
                      </BorderPane.margin>
