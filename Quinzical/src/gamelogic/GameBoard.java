@@ -45,8 +45,8 @@ public class GameBoard implements Serializable {
 		loadState();
 	}
 
-	public void ask(int qIndex, int catindex) {
-		_qBank.ask(catindex, qIndex);
+	public String ask(int qIndex, int catIndex) {
+		return _qBank.ask(catIndex, qIndex);
 	}
 
 	public boolean answer(int qIndex, int catIndex, String answer) {
@@ -58,6 +58,10 @@ public class GameBoard implements Serializable {
 		return wasCorrect;
 	}
 
+	public void say(String message) {
+		TtsHandler speaker = new TtsHandler();
+		speaker.say(message);
+	}
 	
 	/*
 	 * if fresh instance, do nothing. if saved state exists, update _winnings,
@@ -128,6 +132,12 @@ public class GameBoard implements Serializable {
 	public boolean isCompleted(int question, int category) {
 		return _completed[question][category];
 	}
+
+	public String getPrompt(int question, int category) {
+		return _qBank.getPrompt(question, category);
+	}
+
+	public void makeCompleted(int question, int category) { _completed[question][category] = true; }
 
 	public List<String> getCategoryNames() {
 		return _qBank.getFirst5Cat();

@@ -28,6 +28,51 @@
       <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="80.0" />
       <StackPane layoutY="100.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
          <children>
+             <BorderPane fx:id="resultPane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+                 <center>
+                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+                         <children>
+                             <Label fx:id="resultLabel" alignment="CENTER" text="Your answer was ???" />
+                             <Button mnemonicParsing="false" onAction="#handleOkBtnClick" text="Ok" />
+                         </children>
+                         <BorderPane.margin>
+                             <Insets bottom="50.0" />
+                         </BorderPane.margin></VBox>
+                 </center>
+                 <top>
+                     <Label text="Result" textFill="RED" BorderPane.alignment="CENTER">
+                         <BorderPane.margin>
+                             <Insets top="15.0" />
+                         </BorderPane.margin>
+                     </Label>
+                 </top>
+             </BorderPane>
+            <BorderPane fx:id="completePane" layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" text="You've completed the game." />
+                        <Label text="Your winnings were ???" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset" />
+                              <Button mnemonicParsing="false" onAction="#handleBackBtnClick" text="Menu" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="50.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </center>
+               <top>
+                  <Label fx:id="completedPane" text="Game Complete" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="15.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+            </BorderPane>
 		 	<BorderPane fx:id="cluePane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
 		           <top>
 		              <Label text="Clue" textFill="RED" BorderPane.alignment="CENTER">
@@ -37,7 +82,21 @@
 		              </Label>
 		           </top>
 		           <center>
-		              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+		              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                             <children>
+                                 <Label fx:id="promptLabel" alignment="CENTER" text="Prompt: " />
+                                 <TextField fx:id="answerField" alignment="CENTER" promptText="Type answer here" />
+                             </children>
+                         </HBox>
+                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                             <children>
+                                 <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="110.0" text="Repeat Clue" />
+                                 <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="110.0" text="Submit Answer / Don't Know" />
+                             </children>
+                         </HBox>
+                     </children></VBox>
 		           </center>
 		    </BorderPane>
             <BorderPane fx:id="selectionPane" prefHeight="200.0" prefWidth="200.0">

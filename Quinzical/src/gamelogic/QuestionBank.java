@@ -53,6 +53,10 @@ public class QuestionBank implements Serializable{
 			}
 		}
 	}
+
+	public String getPrompt(int question, int category) {
+		return _categories.get(category).getQPrompt(question);
+	}
 	
 	public List<String> getFirst5Cat(){
 		List<String> output = new ArrayList<String>();

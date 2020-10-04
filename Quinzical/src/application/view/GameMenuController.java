@@ -29,25 +29,47 @@ public class GameMenuController implements Initializable {
     @FXML
     private BorderPane cluePane;
     @FXML
+    private BorderPane resultPane;
+    @FXML
+    private BorderPane completedPane;
+    @FXML
     private GridPane clueGrid;
+    @FXML
+    private Label promptLabel;
+    @FXML
+    private Label resultLabel;
+    @FXML
+    private Label winningsLabel;
+    @FXML
+    private TextField answerField;
 
     private GameBoard _gameBoard;
     private List<String> _categories;
+    private String _questionStr;
+    private int _questionIndex;
+    private int _categoryIndex;
+    private boolean _remaining = true;
 
     public void handleClueSelected(ActionEvent event) {
     	System.out.println("Clue selected");
         Button clickedBtn = (Button) event.getSource();
-        
-        int questionIndex;
-        int categoryIndex;
-        
-    	questionIndex = GridPane.getRowIndex(clickedBtn).intValue() - 1;
+        clickedBtn.setDisable(true);
+
+    	_questionIndex = GridPane.getRowIndex(clickedBtn).intValue() - 1;
     	
     	if (GridPane.getColumnIndex(clickedBtn) == null) { 
-    		categoryIndex = 0; 
+    		_categoryIndex = 0;
     	} else {
-    		categoryIndex = GridPane.getColumnIndex(clickedBtn).intValue();
+    		_categoryIndex = GridPane.getColumnIndex(clickedBtn).intValue();
     	}
+    	_gameBoard.makeCompleted(_questionIndex, _categoryIndex);
+        // Checks whether any are remaining since one more has been attempted
+        checkRemaining();
+        // Updates button state to reflect question attempts
+        updateBoardState();
+
+        _questionStr = _gameBoard.ask(_questionIndex, _categoryIndex);
+        promptLabel.setText(_gameBoard.getPrompt(_questionIndex, _categoryIndex));
 
         // Make category selector BorderPane opacity = 0
         selectionPane.setOpacity(0);
@@ -56,12 +78,43 @@ public class GameMenuController implements Initializable {
         cluePane.toFront();
 
     }
+
+    public void handleRepeatBtnClick() {
+        _gameBoard.say(_questionStr);
+    }
+
+    public void handleSubmitBtnClick() {
+        // Get entered field, or empty if didn't know
+        String answer = answerField.getText();
+        // Check if correct
+        if (_gameBoard.answer(_questionIndex, _categoryIndex, answer)) {
+            resultLabel.setText("Your answer was correct! Good job!");
+        } else {
+            resultLabel.setText("You were not correct.");
+        }
+
+        cluePane.setOpacity(0);
+        resultPane.setOpacity(1);
+        resultPane.toFront();
+
+    }
+
+    public void handleOkBtnClick() {
+        resultPane.setOpacity(0);
+
+        if (_remaining) {
+            selectionPane.setOpacity(1);
+            selectionPane.toFront();
+        } else {
+            winningsLabel.setText("Your final winnings are $" + String.valueOf(_gameBoard.getWinnings()));
+            completedPane.setOpacity(1);
+            completedPane.toFront();
+        }
+    }
     
     public void handleBackBtnClick() {
     	System.out.println("Back");
-    	
-    	// Get the primaryStage object
-    	Stage mainStage = (Stage) backBtn.getScene().getWindow();
+
         try {
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
@@ -76,13 +129,25 @@ public class GameMenuController implements Initializable {
         } 
     }
 
-    private void loadBoardState() {
-        // Make call to the GameBoard object to get all the actual categories
+    public void handleResetBtnClick() {
+
         _categories = _gameBoard.getCategoryNames();
+        _remaining = true;
+
+        _gameBoard.reset();
+        updateBoardState();
+
+        completedPane.setOpacity(0);
+        selectionPane.setOpacity(1);
+        selectionPane.toFront();
+    }
+
+    private void updateBoardState() {
         ObservableList<Node> gridNodes = clueGrid.getChildren();
 
     	int catVal;
     	int clueVal;
+
         for (Node node: gridNodes) {
         	
         	if (GridPane.getRowIndex(node) == null) { 
@@ -115,13 +180,28 @@ public class GameMenuController implements Initializable {
         }
     }
 
+    public boolean checkRemaining() {
+        boolean[][] completedArray = _gameBoard.getCompleted();
+        for (int x = 0; x < completedArray.length; x++) {
+            for (int y = 0; y < completedArray[0].length; y++) {
+                if (! completedArray[x][y]) {
+                        _remaining = true;
+                        return true;
+                }
+            }
+        }
+        _remaining = false;
+        return false;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	// Initialise and load GameBoard object
         _gameBoard = new GameBoard();
+        // Make call to the GameBoard object to get all the actual categories
+        _categories = _gameBoard.getCategoryNames();
         // Reflect any loaded state in GUI
-        loadBoardState();
-
+        updateBoardState();
 
     }
 }
