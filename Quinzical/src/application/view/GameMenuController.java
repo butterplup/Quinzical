@@ -37,9 +37,17 @@ public class GameMenuController implements Initializable {
     public void handleClueSelected(ActionEvent event) {
     	System.out.println("Clue selected");
         Button clickedBtn = (Button) event.getSource();
-
-        int questionIndex = GridPane.getRowIndex(clickedBtn) - 1;
-        int categoryIndex = GridPane.getColumnIndex(clickedBtn);
+        
+        int questionIndex;
+        int categoryIndex;
+        
+    	questionIndex = GridPane.getRowIndex(clickedBtn).intValue() - 1;
+    	
+    	if (GridPane.getColumnIndex(clickedBtn) == null) { 
+    		categoryIndex = 0; 
+    	} else {
+    		categoryIndex = GridPane.getColumnIndex(clickedBtn).intValue();
+    	}
 
         // Make category selector BorderPane opacity = 0
         selectionPane.setOpacity(0);
