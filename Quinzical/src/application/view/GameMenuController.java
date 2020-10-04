@@ -106,7 +106,9 @@ public class GameMenuController implements Initializable {
             selectionPane.setOpacity(1);
             selectionPane.toFront();
         } else {
-            winningsLabel.setText("Your final winnings are $" + String.valueOf(_gameBoard.getWinnings()));
+        	int winnings = _gameBoard.getWinnings();
+            winningsLabel.setText("Your final winnings are $" + Integer.toString(winnings));
+            
             completedPane.setOpacity(1);
             completedPane.toFront();
         }
@@ -116,6 +118,7 @@ public class GameMenuController implements Initializable {
     	System.out.println("Back");
 
         try {
+        	_gameBoard.saveState();
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
@@ -143,6 +146,9 @@ public class GameMenuController implements Initializable {
     }
 
     private void updateBoardState() {
+    	// Record any changes to file
+    	_gameBoard.saveState();
+
         ObservableList<Node> gridNodes = clueGrid.getChildren();
 
     	int catVal;
@@ -160,7 +166,12 @@ public class GameMenuController implements Initializable {
         	} else {
         		catVal = GridPane.getColumnIndex(node).intValue();
         	}
-        	
+        	// Enable all top clue buttons
+        	if (clueVal == 1) {
+        		Button clueBtn = (Button) node;
+                clueBtn.setDisable(false);
+        	}
+        	// Check whether it is a button or not
             if (clueVal == 0) {
                 for (int i = 0; i < 6 ; i++) {
                     if (catVal == i) {
@@ -168,9 +179,12 @@ public class GameMenuController implements Initializable {
                         catLabel.setText(_categories.get(i));
                     }
                 }
+                // Check whether a question has been completed
             } else if (_gameBoard.isCompleted(clueVal-1,catVal)) {
+            	// Disable if it has been completed
                 Button clueBtn = (Button) node;
                 clueBtn.setDisable(true);
+                // Check if it is non-first row button that has no higher un-attempted clues
             } else if (clueVal != 1) {
                 if (_gameBoard.isCompleted(clueVal-2,catVal)) {
                     Button clueBtn = (Button) node;

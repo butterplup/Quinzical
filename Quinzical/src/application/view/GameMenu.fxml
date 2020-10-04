@@ -47,12 +47,12 @@
                      </Label>
                  </top>
              </BorderPane>
-            <BorderPane fx:id="completePane" layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+            <BorderPane fx:id="completedPane" layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label alignment="CENTER" text="You've completed the game." />
-                        <Label text="Your winnings were ???" />
+                        <Label fx:id="winningsLabel" text="Your winnings were ???" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset" />
@@ -66,7 +66,7 @@
                   </VBox>
                </center>
                <top>
-                  <Label fx:id="completedPane" text="Game Complete" textFill="RED" BorderPane.alignment="CENTER">
+                  <Label fx:id="completedLabel" text="Game Complete" textFill="RED" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
                         <Insets top="15.0" />
                      </BorderPane.margin>
