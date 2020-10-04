@@ -1,5 +1,6 @@
 package application.view;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,7 +24,13 @@ public class GameMenuController implements Initializable {
     @FXML
     private BorderPane cluePane;
 
-    public void handleClueSelected() {
+    public void handleClueSelected(ActionEvent event) {
+        Button clickedBtn = (Button) event.getSource();
+
+        int questionIndex = GridPane.getRowIndex(clickedBtn) - 1;
+        int categoryIndex = GridPane.getColumnIndex(clickedBtn);
+
+
         // Make category selector BorderPane opacity = 0
         selectionPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1

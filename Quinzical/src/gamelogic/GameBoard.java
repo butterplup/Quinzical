@@ -12,7 +12,7 @@ import java.util.List;
 
 /*
  * This class includes all the game-related methods that we need to
- * call from ui elements.
+ * call from ui elements for the games module.
  * HOW TO USE:
  * 	shuffle shuffles entire questionbank, so that first 5 categories are random,
  * 	and first 5 questions from each category is random.
@@ -40,9 +40,9 @@ public class GameBoard implements Serializable {
 	boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
 
 	public GameBoard() {
-		loadState();
 		_qBank = new QuestionBank();
 		_qBank.shuffle();
+		loadState();
 	}
 
 	public void ask(int qIndex, int catindex) {
