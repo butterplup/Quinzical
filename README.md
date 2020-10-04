@@ -2,7 +2,7 @@
 
 ## How to run Quinzical:
 
-1// extract the contents of SOFTENG206-ass3-team33.zip to a folder, lets call this folder "Quinzical".
+1// extract the contents of SOFTENG206-ass3-team33.zip to a folder, if it is not already then name this folder "Quinzical".
 
 2// place your categories folder in "Quinzical", at the same level as the directory "src" and the jar file "Jeopardy.jar".
 
