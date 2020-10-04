@@ -119,10 +119,14 @@ public class GameBoard implements Serializable {
 	}
 
 	/*
-	 * returns 2d boolean matrix, where 1=completed and 0=incomplete
+	 * returns 2d boolean matrix, where true=completed and false=incomplete
 	 */
 	public boolean[][] getCompleted() {
 		return _completed;
+	}
+
+	public boolean isCompleted(int question, int category) {
+		return _completed[question][category];
 	}
 
 	public List<String> getCategoryNames() {
