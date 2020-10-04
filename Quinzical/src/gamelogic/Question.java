@@ -1,6 +1,7 @@
 package gamelogic;
 
 import java.io.Serializable;
+import java.text.Normalizer;
 import java.util.List;
 
 public class Question implements Serializable{
@@ -14,8 +15,10 @@ public class Question implements Serializable{
 	private String _whatX;
 	public Question(String question, String answer, String whatX) {
 //		_reward = reward;
+		
+		String normalised = Normalizer.normalize(answer, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
 		_question = question;
-		_answer = answer.split("/");
+		_answer = normalised.split("/");
 
 		_whatX = whatX;
 	}
@@ -40,10 +43,14 @@ public class Question implements Serializable{
 				return true;
 			}
 		}
+		
+		say("false, the correct answer was " + _answer[0]);
 		return false;
 	}
 
 	private void say(String message) {
-		new SpeakerThread(_question);
+		TtsHandler tts = new TtsHandler();
+		tts.loadSpeed();
+		tts.say(message);
 	}
 }
