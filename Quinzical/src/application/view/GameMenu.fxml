@@ -92,8 +92,8 @@
                          </HBox>
                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                              <children>
-                                 <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="140.0" text="Repeat Clue" />
-                                 <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="140.0" text="Submit Answer / Don't Know" />
+                                 <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="100.0" text="Repeat Clue" />
+                                 <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="190.0" text="Submit Answer / Don't Know" />
                              </children>
                          </HBox>
                      </children></VBox>
