@@ -31,6 +31,7 @@ import java.util.List;
             
  */
 public class GameBoard implements Serializable {
+	private static final long serialVersionUID = 1L;
 	int _winnings = 0;
 	QuestionBank _qBank;
 	// randomly selected categories/questions
