@@ -73,7 +73,7 @@ public class MainMenuController {
     @FXML
     public void handleExitBtnClick() {
     	// Save game
-        System.out.println("Call gamelogic.saveGame()");
+//        System.out.println("Call gamelogic.saveGame()");
     	// Get the current stage
         Scene scene = exitBtn.getScene();
         Window window = scene.getWindow();

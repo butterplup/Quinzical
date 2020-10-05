@@ -44,7 +44,6 @@ public class SpeakerThread extends Thread {
 		
 		try {
 			// Command reads out each the desired message
-            // Festival command setup
 			String command = "festival -b tts.scm";
 			// Bash command executives festival
 			ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);

@@ -69,7 +69,6 @@ public class PracticeMenuController implements Initializable {
         _questionStr = _selectedCategory.ask(Q_INDEX);
         // For longer strings that would otherwise be clipped, a newline char is added to split it
         if (_questionStr.length() > 50) {
-        	System.out.println("Long clue, huh?");
             for (int i = 45; i < _questionStr.length(); i++) {
             	// Finds a space between two words to split
                 if (_questionStr.charAt(i) == ' ') {

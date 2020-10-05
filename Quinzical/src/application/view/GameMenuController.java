@@ -62,6 +62,7 @@ public class GameMenuController implements Initializable {
      * @param event
      */
     public void handleClueSelected(ActionEvent event) {
+
         Button clickedBtn = (Button) event.getSource();
         clickedBtn.setDisable(true);
 

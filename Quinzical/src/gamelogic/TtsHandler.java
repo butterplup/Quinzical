@@ -28,13 +28,13 @@ public class TtsHandler {
 				_speed = (double) in.readObject();
 				in.close();
 				fileIn.close();
-				System.out.println(_speed + " ttspeed.ser loaded");
+//				System.out.println(_speed + " ttspeed.ser loaded");
 				return true;
 			} catch (IOException i) {
 				i.printStackTrace();
 				return false;
 			} catch (ClassNotFoundException c) {
-				System.out.println("existing ttsspeed not found");
+//				System.out.println("existing ttsspeed not found");
 				c.printStackTrace();
 				return false;
 			}
@@ -56,7 +56,7 @@ public class TtsHandler {
 			out.close();
 			fileOut.close();
 
-			System.out.println("data saved to ttsspeed.ser");
+//			System.out.println("data saved to ttsspeed.ser");
 
 		} catch (IOException i) {
 			i.printStackTrace();
