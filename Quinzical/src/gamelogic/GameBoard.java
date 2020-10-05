@@ -17,10 +17,9 @@ import java.util.List;
  * 	shuffle shuffles entire questionbank, so that first 5 categories are random,
  * 	and first 5 questions from each category is random.
  * 
- * 	Then buttons will call ask(0-4, 0,4) and answer(0-4,0-4)
+ * 	Then buttons from GUI will call ask(0-4, 0,4) and answer(0-4,0-4)
  * 
- * Here's some basic code i was using to test
- *  //TESTING
+ *  //TESTING - USE CASE
             GameBoard gBoard = new GameBoard();
             System.out.println(gBoard.getCategoryNames());
             gBoard.ask(0,0);
@@ -39,16 +38,30 @@ public class GameBoard implements Serializable {
 	// second-6th row is question indices
 	boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
 
+	/**
+	 * Gets a shuffled question bank of all questions on file
+	 */
 	public GameBoard() {
 		_qBank = new QuestionBank();
+		// Shuffles everything
 		_qBank.shuffle();
+		// Load any saved fields
 		loadState();
 	}
 
+	/**
+	 *  Passes call to question bank, to ask a question
+	 * @param qIndex - desire question index
+	 * @param catIndex - desired category index
+	 * @return - string of the clue for user
+	 */
 	public String ask(int qIndex, int catIndex) {
 		return _qBank.ask(catIndex, qIndex);
 	}
 
+	/**
+	 *  Checks if the supplied answer is correct, and changes winnings accordingly
+	 */
 	public boolean answer(int qIndex, int catIndex, String answer) {
 		boolean wasCorrect = _qBank.answer(catIndex, qIndex, answer);
 		if (wasCorrect) {
@@ -58,6 +71,10 @@ public class GameBoard implements Serializable {
 		return wasCorrect;
 	}
 
+	/**
+	 * Reads out a desired string message to user
+	 * @param message - string they want read out
+	 */
 	public void say(String message) {
 		TtsHandler speaker = new TtsHandler();
 		speaker.say(message);
@@ -65,7 +82,7 @@ public class GameBoard implements Serializable {
 	
 	/*
 	 * if fresh instance, do nothing. if saved state exists, update _winnings,
-	 * update _completed,
+	 * update _completed, to be used to remember previous games
 	 */
 	public void loadState() {
 		File f = new File("/tmp/game-state.ser");
@@ -84,7 +101,6 @@ public class GameBoard implements Serializable {
 				i.printStackTrace();
 				return;
 			} catch (ClassNotFoundException c) {
-				System.out.println("game-state not found");
 				c.printStackTrace();
 				return;
 			}
@@ -94,6 +110,9 @@ public class GameBoard implements Serializable {
 			return;
 	}
 
+	/**
+	 * Saves all fields to be used later if user exits to menu and returns to game
+	 */
 	public void saveState() {
 		try {
 			FileOutputStream fileOut = new FileOutputStream("/tmp/game-state.ser");
@@ -102,13 +121,14 @@ public class GameBoard implements Serializable {
 			out.close();
 			fileOut.close();
 
-			System.out.println("data saved to game-state.ser");
-
 		} catch (IOException i) {
 			i.printStackTrace();
 		}
 	}
 
+	/**
+	 * Resets all information and deletes any save data
+	 */
 	public void reset() {
 		File file = new File("/tmp/game-state.ser");
 		file.delete();
@@ -129,43 +149,47 @@ public class GameBoard implements Serializable {
 		return _completed;
 	}
 
+	/**
+	 * Checks if a specific question has already been answered
+	 * @param question - desired question index
+	 * @param category - desired category index
+	 * @return boolean, true if answer has been completed
+	 */
 	public boolean isCompleted(int question, int category) {
 		return _completed[question][category];
 	}
-
+	
+	/**
+	 * Gets the prompt for user to see. Both params are indices.
+	 * @param question
+	 * @param category
+	 * @return
+	 */
 	public String getPrompt(int question, int category) {
 		return _qBank.getPrompt(question, category);
 	}
 
+	/**
+	 * Sets a question as having been attempted
+	 * @param question - desired question
+	 * @param category - of desired category
+	 */
 	public void makeCompleted(int question, int category) { _completed[question][category] = true; }
 
+	/**
+	 * Returns just the first 5 categories on the list to display on the board
+	 * @return a list of the names of 5 categories
+	 */
 	public List<String> getCategoryNames() {
 		return _qBank.getFirst5Cat();
 	}
 	
+	/**
+	 * Getter method
+	 * @return questionBank
+	 */
 	private QuestionBank getQBank() {
 		return _qBank;
 	}
-//TESTING, IGNORE.
-//	 GameBoard gBoard = new GameBoard();
-//     System.out.println(gBoard.getCategoryNames());
-//     gBoard.ask(0,0);
-//     
-//     if (gBoard.answer(0,0,"bumbum")) {
-//     	System.out.println("GOOD");
-//     }
-//     else System.out.println("BAD");
-//     
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     
-////     gBoard.saveState();
-//     gBoard.getQBank().shuffle();
-//     System.out.println(gBoard.getCategoryNames());
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     gBoard.loadState();
-//     System.out.println(gBoard.getCategoryNames());
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     System.out.println(gBoard.getCategoryNames());
+
 }

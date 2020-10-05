@@ -21,7 +21,7 @@ import javafx.scene.layout.VBox;
 public class PracticeMenuController implements Initializable {
     // For choosing the first index of the category
     private final int Q_INDEX = 1;
-
+    // FXML specific fields loaded in from file
     @FXML
     private ChoiceBox<String> selectCategory;
     @FXML
@@ -48,17 +48,18 @@ public class PracticeMenuController implements Initializable {
     private TextField answerField;
     @FXML
     private Button retryBtn;
-
+    // Fields for use as model
     private QuestionBank _practiceQBank;
     private Category _selectedCategory;
     private String _questionStr;
-
     private int _wrongCount = 0;
 
+    /**
+     * Gets the chosen category and selects a random question from this category to ask the user
+     */
     public void handleCategorySelected() {
         // Get the String representing the name of selected category
         String categoryName = selectCategory.getValue();
-        System.out.println("Category selected: " + categoryName);
         // Get the Category object for the corresponding category
         _selectedCategory = _practiceQBank.getCategory(categoryName);
         // Shuffle to ensure first question is random
@@ -66,10 +67,11 @@ public class PracticeMenuController implements Initializable {
 
         // Reads out the clue and returns the String representation
         _questionStr = _selectedCategory.ask(Q_INDEX);
-
+        // For longer strings that would otherwise be clipped, a newline char is added to split it
         if (_questionStr.length() > 50) {
         	System.out.println("Long clue, huh?");
-            for (int i = 40; i < _questionStr.length(); i++) {
+            for (int i = 45; i < _questionStr.length(); i++) {
+            	// Finds a space between two words to split
                 if (_questionStr.charAt(i) == ' ') {
                     _questionStr = _questionStr.substring(0, i) + "...\n" + _questionStr.substring(i);
                     break;
@@ -88,11 +90,11 @@ public class PracticeMenuController implements Initializable {
         cluePane.toFront();
     }
     
+    /**
+     * Returns user to main menu
+     */
     public void handleBackBtnClick() {
-    	System.out.println("Back");
     	
-    	// Get the primaryStage object
-    	//Stage mainStage = (Stage) backBtn.getScene().getWindow();
         try {
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
@@ -107,10 +109,17 @@ public class PracticeMenuController implements Initializable {
         } 
     }
 
+    /**
+     * Repeats the clue as tts for user to listen
+     */
     public void handleRepeatBtnClick() {
         _selectedCategory.ask(1);
     }
 
+    /**
+     * Reads the user input and checks if the answer is correct,
+     * implements a three strikes rule
+     */
     public void handleSubmitBtnClick() {
         String answer = answerField.getText();
         cluePane.setOpacity(0);
@@ -122,17 +131,19 @@ public class PracticeMenuController implements Initializable {
         } else {
             // Add to number of attempts
             _wrongCount++;
-
+            // After two wrong tries
             if (_wrongCount == 2) {
                 // Give first letter/s as hint for retry
                 hintLabel.setText(_selectedCategory.getQHint(Q_INDEX));
-
+            // After three wrong attempts, no more attempts remain
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
                 hintLabel.setText("No more attempts.");
                 incorrectLabels.getChildren().add(2,new Label("The clue was: " + _questionStr));
                 incorrectLabels.getChildren().add(3,new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX)));
+                // Cannot attempt again
                 retryBtn.setDisable(true);
+                // Offer the option to return to menu
                 Button returnBtn = new Button("Return to menu");
                 returnBtn.setOnAction(e -> handleBackBtnClick());
                 incorrectBtns.getChildren().add(returnBtn);
@@ -145,12 +156,19 @@ public class PracticeMenuController implements Initializable {
         }
     }
 
+    /**
+     * Changes from the hint screen to the answer input screen,
+     * gives the user another attempt
+     */
     public void handleRetryBtnClick() {
         incorrectPane.setOpacity(0);
         cluePane.setOpacity(1);
         cluePane.toFront();
     }
 
+    /**
+     * Called when FXML file is loaded. Initialises the objects to be used as the model.
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

@@ -1,7 +1,7 @@
 package application.view;
 
 import gamelogic.GameBoard;
-import javafx.beans.Observable;
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.List;
@@ -18,8 +17,14 @@ import java.util.ResourceBundle;
 
 import application.Main;
 
+/**
+ * The controller class for the game module GUI
+ * @author jh
+ *
+ */
 public class GameMenuController implements Initializable {
 
+	// FXML Fields 
     @FXML
     private Button backBtn;
     @FXML
@@ -42,7 +47,7 @@ public class GameMenuController implements Initializable {
     private Label winningsLabel;
     @FXML
     private TextField answerField;
-
+    // Fields for model
     private GameBoard _gameBoard;
     private List<String> _categories;
     private String _questionStr;
@@ -50,8 +55,13 @@ public class GameMenuController implements Initializable {
     private int _categoryIndex;
     private boolean _remaining = true;
 
+    /**
+     * Handles events caused by any of the clue buttons.
+     * Gets the corresponding question info
+     * Changes scene to display question entry scene
+     * @param event
+     */
     public void handleClueSelected(ActionEvent event) {
-    	System.out.println("Clue selected");
         Button clickedBtn = (Button) event.getSource();
         clickedBtn.setDisable(true);
 
@@ -79,10 +89,17 @@ public class GameMenuController implements Initializable {
 
     }
 
+    /**
+     * Repeats the clue message through tts
+     */
     public void handleRepeatBtnClick() {
         _gameBoard.say(_questionStr);
     }
 
+    /**
+     * Gets the user's input for the answer and checks whether it is correct.
+     * Then changes scene to display the result to the user.
+     */
     public void handleSubmitBtnClick() {
         // Get entered field, or empty if didn't know
         String answer = answerField.getText();
@@ -92,20 +109,29 @@ public class GameMenuController implements Initializable {
         } else {
             resultLabel.setText("You were not correct.");
         }
-
+        // Makes the results BorderPane visible, while making the clue Pane transparent
         cluePane.setOpacity(0);
         resultPane.setOpacity(1);
+        // Bring to front so user can interact with its nodes
         resultPane.toFront();
 
     }
 
+    /**
+     * Handles events caused by user recognition of confirmation screens.
+     * Progresses user on to appropriate next screen, either to select a new clue,
+     * or the end game screen
+     */
     public void handleOkBtnClick() {
         resultPane.setOpacity(0);
 
+        //If any questions remain then
         if (_remaining) {
+        	// Show user the clue selection screen
             selectionPane.setOpacity(1);
             selectionPane.toFront();
         } else {
+        	// Otherwise display the final score, and tell them they've finished
         	int winnings = _gameBoard.getWinnings();
             winningsLabel.setText("Your final winnings are $" + Integer.toString(winnings));
             
@@ -113,9 +139,11 @@ public class GameMenuController implements Initializable {
             completedPane.toFront();
         }
     }
-    
+    /**
+     * Meant to take user back to main menu screen.
+     * Handles the back button events.
+     */
     public void handleBackBtnClick() {
-    	System.out.println("Back");
 
         try {
         	_gameBoard.saveState();
@@ -132,35 +160,46 @@ public class GameMenuController implements Initializable {
         } 
     }
 
+    /**
+     * Resets all fields and the game board to new values,
+     * such that the user can play again
+     */
     public void handleResetBtnClick() {
 
-        _categories = _gameBoard.getCategoryNames();
         _remaining = true;
-
+        // Selects new questions and categories
         _gameBoard.reset();
+        _categories = _gameBoard.getCategoryNames();
+        // Resets the buttons
         updateBoardState();
-
+        // Displays new selection screen
         completedPane.setOpacity(0);
         selectionPane.setOpacity(1);
         selectionPane.toFront();
     }
 
+    /**
+     * Sets the buttons to reflect their state as stored in GameBoard
+     */
     private void updateBoardState() {
     	// Record any changes to file
     	_gameBoard.saveState();
-
+    	// Get all of the nodes in the grid
         ObservableList<Node> gridNodes = clueGrid.getChildren();
 
     	int catVal;
     	int clueVal;
-
+    	// Loop through each node
         for (Node node: gridNodes) {
-        	
+        	// For nodes with either a row or col of 0, method gives null
         	if (GridPane.getRowIndex(node) == null) { 
+        		// So need to adjust to avoid exceptions
         		clueVal = 0;
         	} else {
+        		// Otherwise the method returns the right value
         		clueVal = GridPane.getRowIndex(node).intValue();
         	}
+        	// Same as above
         	if (GridPane.getColumnIndex(node) == null) { 
         		catVal = 0; 
         	} else {
@@ -194,11 +233,17 @@ public class GameMenuController implements Initializable {
         }
     }
 
+    /**
+     * A method that checks if there are any un-attempted questions remaining
+     * @return true if there are some questions left to answer
+     */
     public boolean checkRemaining() {
         boolean[][] completedArray = _gameBoard.getCompleted();
+        // Loop through whole array to check the state of every question
         for (int x = 0; x < completedArray.length; x++) {
             for (int y = 0; y < completedArray[0].length; y++) {
                 if (! completedArray[x][y]) {
+                	// It is sufficient that at least one non-attempted question remains
                         _remaining = true;
                         return true;
                 }
@@ -208,6 +253,9 @@ public class GameMenuController implements Initializable {
         return false;
     }
 
+    /**
+     * Run when the FXML file is loaded to initialise model objects to be utilised for the view
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	// Initialise and load GameBoard object

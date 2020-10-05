@@ -14,6 +14,10 @@ import java.io.ObjectOutputStream;
 public class TtsHandler {
 	double _speed = 1; 
 
+	/**
+	 * Reads a file that takes the desired speed that has been saved from settings menu
+	 * @return true if all goes well
+	 */
 	public boolean loadSpeed() {
 		File f = new File("/tmp/ttsspeed.ser");
 		if (f.exists() && !f.isDirectory()) {
@@ -40,6 +44,10 @@ public class TtsHandler {
 			return false;
 	}
 	
+	/**
+	 * Saves info from settings menu to a file
+	 * @param speed to be saved
+	 */
 	public void saveSpeed(double speed) {
 		try {
 			FileOutputStream fileOut = new FileOutputStream("/tmp/ttsspeed.ser");
@@ -55,6 +63,10 @@ public class TtsHandler {
 		}
 	}
 	
+	/**
+	 *  Reads the message on a new thread
+	 * @param message to be read
+	 */
 	public void say(String message) {
 		new SpeakerThread(message, _speed).start();
 	}

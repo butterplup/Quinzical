@@ -8,8 +8,14 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
+/**
+ * The controller class for the main menu
+ * @author jh and bs
+ *
+ */
 public class MainMenuController {
 
+	// Fields for JavaFX elements, loaded from fxml file
     @FXML
     private Button gamesBtn;
     @FXML
@@ -19,26 +25,35 @@ public class MainMenuController {
     @FXML
     private AnchorPane anchor;
 
+    /**
+     * Changes menu to games module menu
+     */
     @FXML
     public void handleGamesBtnClick() {
-        System.out.println("Game Button clicked");
         this.loadFXML("GameMenu");
     }
 
+    /**
+     * Changes menu to practice module menu
+     */
     @FXML
     public void handlePracticeBtnClick() {
-        System.out.println("Prac Button clicked");
         this.loadFXML("PracticeMenu");
     }
     
+    /**
+     * Changes menu to settings menu
+     */
     @FXML
     public void handleSettingsBtnClick() {
-        System.out.println("Settings Button clicked");
-
         this.loadFXML("SettingsMenu");
 
     }
 
+    /**
+     * Takes the particular fxml file name as input and loads it to screen
+     * @param file - name of fxml file
+     */
     public void loadFXML(String file) {
         try {
 
