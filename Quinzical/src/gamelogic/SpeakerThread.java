@@ -32,13 +32,6 @@ public class SpeakerThread extends Thread {
 		try {
 			// Command reads out each the desired message
 			
-//			BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("tts.scm"));
-//                bufferedWriter.write("(voice_akl_nz_jdt_diphone)");
-//                bufferedWriter.newLine();
-//                bufferedWriter.write("(Parameter.set 'Duration_Stretch " + _audioStretch + ")");
-//                bufferedWriter.newLine();
-//                bufferedWriter.write("(SayText \"" + _message + "\")");
-//                bufferedWriter.close();
             
 			String command = "festival -b tts.scm";
 			ProcessBuilder pb = new ProcessBuilder("bash", "-c", command);
@@ -51,6 +44,6 @@ public class SpeakerThread extends Thread {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("SpeakerThread running");
+//		System.out.println("SpeakerThread running");
 	}	
 }

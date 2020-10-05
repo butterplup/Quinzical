@@ -58,7 +58,7 @@ public class PracticeMenuController implements Initializable {
     public void handleCategorySelected() {
         // Get the String representing the name of selected category
         String categoryName = selectCategory.getValue();
-        System.out.println("Category selected: " + categoryName);
+//        System.out.println("Category selected: " + categoryName);
         // Get the Category object for the corresponding category
         _selectedCategory = _practiceQBank.getCategory(categoryName);
         // Shuffle to ensure first question is random
@@ -68,7 +68,7 @@ public class PracticeMenuController implements Initializable {
         _questionStr = _selectedCategory.ask(Q_INDEX);
 
         if (_questionStr.length() > 50) {
-        	System.out.println("Long clue, huh?");
+//        	System.out.println("Long clue, huh?");
             for (int i = 40; i < _questionStr.length(); i++) {
                 if (_questionStr.charAt(i) == ' ') {
                     _questionStr = _questionStr.substring(0, i) + "...\n" + _questionStr.substring(i);
@@ -89,7 +89,7 @@ public class PracticeMenuController implements Initializable {
     }
     
     public void handleBackBtnClick() {
-    	System.out.println("Back");
+//    	System.out.println("Back");
     	
     	// Get the primaryStage object
     	//Stage mainStage = (Stage) backBtn.getScene().getWindow();

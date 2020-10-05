@@ -84,7 +84,7 @@ public class GameBoard implements Serializable {
 				i.printStackTrace();
 				return;
 			} catch (ClassNotFoundException c) {
-				System.out.println("game-state not found");
+//				System.out.println("game-state not found");
 				c.printStackTrace();
 				return;
 			}
@@ -102,7 +102,7 @@ public class GameBoard implements Serializable {
 			out.close();
 			fileOut.close();
 
-			System.out.println("data saved to game-state.ser");
+//			System.out.println("data saved to game-state.ser");
 
 		} catch (IOException i) {
 			i.printStackTrace();
@@ -146,26 +146,5 @@ public class GameBoard implements Serializable {
 	private QuestionBank getQBank() {
 		return _qBank;
 	}
-//TESTING, IGNORE.
-//	 GameBoard gBoard = new GameBoard();
-//     System.out.println(gBoard.getCategoryNames());
-//     gBoard.ask(0,0);
-//     
-//     if (gBoard.answer(0,0,"bumbum")) {
-//     	System.out.println("GOOD");
-//     }
-//     else System.out.println("BAD");
-//     
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     
-////     gBoard.saveState();
-//     gBoard.getQBank().shuffle();
-//     System.out.println(gBoard.getCategoryNames());
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     gBoard.loadState();
-//     System.out.println(gBoard.getCategoryNames());
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     
-//     System.out.println(Arrays.deepToString(gBoard.getCompleted()));
-//     System.out.println(gBoard.getCategoryNames());
+
 }

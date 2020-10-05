@@ -51,7 +51,7 @@ public class GameMenuController implements Initializable {
     private boolean _remaining = true;
 
     public void handleClueSelected(ActionEvent event) {
-    	System.out.println("Clue selected");
+//    	System.out.println("Clue selected");
         Button clickedBtn = (Button) event.getSource();
         clickedBtn.setDisable(true);
 
@@ -115,7 +115,7 @@ public class GameMenuController implements Initializable {
     }
     
     public void handleBackBtnClick() {
-    	System.out.println("Back");
+//    	System.out.println("Back");
 
         try {
         	_gameBoard.saveState();

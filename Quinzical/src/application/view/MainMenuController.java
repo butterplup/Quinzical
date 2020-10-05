@@ -21,19 +21,19 @@ public class MainMenuController {
 
     @FXML
     public void handleGamesBtnClick() {
-        System.out.println("Game Button clicked");
+//        System.out.println("Game Button clicked");
         this.loadFXML("GameMenu");
     }
 
     @FXML
     public void handlePracticeBtnClick() {
-        System.out.println("Prac Button clicked");
+//        System.out.println("Prac Button clicked");
         this.loadFXML("PracticeMenu");
     }
     
     @FXML
     public void handleSettingsBtnClick() {
-        System.out.println("Settings Button clicked");
+//        System.out.println("Settings Button clicked");
 
         this.loadFXML("SettingsMenu");
 
@@ -58,7 +58,7 @@ public class MainMenuController {
     @FXML
     public void handleExitBtnClick() {
     	// Save game
-        System.out.println("Call gamelogic.saveGame()");
+//        System.out.println("Call gamelogic.saveGame()");
     	// Get the current stage
         Scene scene = exitBtn.getScene();
         Window window = scene.getWindow();
