@@ -24,9 +24,7 @@ import application.Main;
  */
 public class GameMenuController implements Initializable {
 
-	// FXML Fields 
-    @FXML
-    private Button backBtn;
+	// FXML Fields
     @FXML
     private AnchorPane anchor;
     @FXML
@@ -158,7 +156,7 @@ public class GameMenuController implements Initializable {
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
             
-            // Change layout from practice menu to main menu
+            // Change layout from game menu to main menu
             anchor.getChildren().setAll(rootLayout);
 
         } catch(Exception e) {
@@ -172,17 +170,24 @@ public class GameMenuController implements Initializable {
      * such that the user can play again
      */
     public void handleResetBtnClick() {
-
-        _remaining = true;
-        // Selects new questions and categories
+        // Selects new questions and categories, removes any save files
         _gameBoard.reset();
-        _categories = _gameBoard.getCategoryNames();
-        // Resets the buttons
-        updateBoardState();
-        // Displays new selection screen
-        completedPane.setOpacity(0);
-        selectionPane.setOpacity(1);
-        selectionPane.toFront();
+        // Creates new save files for the reset game
+        _gameBoard.saveState();
+
+        try {
+            // Reload the game menu layout
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/GameMenu.fxml"));
+            AnchorPane rootLayout = loader.load();
+
+            // Change layout from game menu to a new instance of game menu
+            anchor.getChildren().setAll(rootLayout);
+
+        } catch(Exception e) {
+            // Print in case of any errors
+            e.printStackTrace();
+        }
+
     }
 
     /**

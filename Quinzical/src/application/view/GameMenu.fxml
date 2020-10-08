@@ -14,7 +14,7 @@
                   <Font size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets bottom="25.0" right="50.0" />
+                  <Insets bottom="25.0" />
                </BorderPane.margin>
             </Label>
          </center>
@@ -24,6 +24,13 @@
                   <Insets left="15.0" top="15.0" />
                </BorderPane.margin></Button>
          </left>
+         <right>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset">
+               <BorderPane.margin>
+                  <Insets right="15.0" top="15.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
       </BorderPane>
       <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="80.0" />
       <StackPane layoutY="100.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
