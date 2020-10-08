@@ -121,6 +121,7 @@ public class PracticeMenuController implements Initializable {
      */
     public void handleSubmitBtnClick() {
         String answer = answerField.getText();
+        answerField.clear();
         cluePane.setOpacity(0);
 
         if (_selectedCategory.answer(Q_INDEX, answer)) {
