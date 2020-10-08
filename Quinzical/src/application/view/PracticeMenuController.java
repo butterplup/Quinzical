@@ -143,8 +143,8 @@ public class PracticeMenuController implements Initializable {
                 // Cannot attempt again
                 retryBtn.setDisable(true);
                 // Offer the option to return to menu
-                Button returnBtn = new Button("Return to menu");
-                returnBtn.setOnAction(e -> handleBackBtnClick());
+                Button returnBtn = new Button("Select new category");
+                returnBtn.setOnAction(e -> handleResetBtnClick());
                 incorrectBtns.getChildren().add(returnBtn);
 
             }
@@ -152,6 +152,24 @@ public class PracticeMenuController implements Initializable {
             incorrectPane.setOpacity(1);
             incorrectPane.toFront();
 
+        }
+    }
+
+    /**
+     * Resets the page back to a new category selector, for a new question
+     */
+    public void handleResetBtnClick() {
+        try {
+            // Load the main menu layout
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/PracticeMenu.fxml"));
+            AnchorPane rootLayout = loader.load();
+
+            // Change layout from practice menu to main menu
+            anchor.getChildren().setAll(rootLayout);
+
+        } catch(Exception e) {
+            // Print in case of any errors
+            e.printStackTrace();
         }
     }
 
