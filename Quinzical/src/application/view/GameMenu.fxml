@@ -14,7 +14,7 @@
                   <Font size="36.0" />
                </font>
                <BorderPane.margin>
-                  <Insets bottom="20.0" right="50.0" />
+                  <Insets bottom="25.0" right="50.0" />
                </BorderPane.margin>
             </Label>
          </center>
@@ -52,7 +52,7 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                      <children>
                         <Label alignment="CENTER" text="You've completed the game." />
-                        <Label fx:id="winningsLabel" text="Your winnings were ???" />
+                        <Label fx:id="finalWinningsLabel" text="Your winnings were ???" />
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset" />
@@ -166,5 +166,6 @@
                </center>
             </BorderPane>
          </children></StackPane>
+      <Label fx:id="winningsLabel" text="Current Winnings: $0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="55.0" />
    </children>
 </AnchorPane>

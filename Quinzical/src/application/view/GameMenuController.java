@@ -46,6 +46,8 @@ public class GameMenuController implements Initializable {
     @FXML
     private Label winningsLabel;
     @FXML
+    private Label finalWinningsLabel;
+    @FXML
     private TextField answerField;
     // Fields for model
     private GameBoard _gameBoard;
@@ -110,6 +112,9 @@ public class GameMenuController implements Initializable {
         } else {
             resultLabel.setText("You were not correct.");
         }
+        // Change the value of the winnings appropriately
+        int winnings = _gameBoard.getWinnings();
+        winningsLabel.setText("Current Winnings: $" + Integer.toString(winnings));
         // Makes the results BorderPane visible, while making the clue Pane transparent
         cluePane.setOpacity(0);
         resultPane.setOpacity(1);
@@ -134,8 +139,9 @@ public class GameMenuController implements Initializable {
         } else {
         	// Otherwise display the final score, and tell them they've finished
         	int winnings = _gameBoard.getWinnings();
-            winningsLabel.setText("Your final winnings are $" + Integer.toString(winnings));
-            
+            winningsLabel.setText("Final Winnings: $" + Integer.toString(winnings));
+            finalWinningsLabel.setText("Your final winnings are $" + Integer.toString(winnings));
+
             completedPane.setOpacity(1);
             completedPane.toFront();
         }
@@ -261,6 +267,9 @@ public class GameMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
     	// Initialise and load GameBoard object
         _gameBoard = new GameBoard();
+        // Make call to the GameBoard object to get any saved winnings
+        int winnings = _gameBoard.getWinnings();
+        winningsLabel.setText("Current Winnings: $" + Integer.toString(winnings));
         // Make call to the GameBoard object to get all the actual categories
         _categories = _gameBoard.getCategoryNames();
         // Reflect any loaded state in GUI
