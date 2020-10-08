@@ -104,6 +104,7 @@ public class GameMenuController implements Initializable {
     public void handleSubmitBtnClick() {
         // Get entered field, or empty if didn't know
         String answer = answerField.getText();
+        answerField.clear();
         // Check if correct
         if (_gameBoard.answer(_questionIndex, _categoryIndex, answer)) {
             resultLabel.setText("Your answer was correct! Good job!");
