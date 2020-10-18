@@ -59,4 +59,6 @@
     -fx-mark-colour: #cc142b;
 }
 
-.choice-box .context-menu { -fx-background-color: #0035bd; }
+.choice-box .context-menu {
+    -fx-background-color: #0035bd;
+}
