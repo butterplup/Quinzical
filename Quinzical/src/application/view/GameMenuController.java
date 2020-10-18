@@ -154,7 +154,7 @@ public class GameMenuController implements Initializable {
         try {
         	_gameBoard.saveState();
         	// Load the main menu layout
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
             
             // Change layout from game menu to main menu

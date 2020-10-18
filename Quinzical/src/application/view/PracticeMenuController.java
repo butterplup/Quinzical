@@ -96,7 +96,7 @@ public class PracticeMenuController implements Initializable {
     	
         try {
         	// Load the main menu layout
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
             
             // Change layout from practice menu to main menu
@@ -162,7 +162,7 @@ public class PracticeMenuController implements Initializable {
     public void handleResetBtnClick() {
         try {
             // Load the main menu layout
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/PracticeMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/PracticeMenu.fxml"));
             AnchorPane rootLayout = loader.load();
 
             // Change layout from practice menu to main menu

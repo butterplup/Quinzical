@@ -40,7 +40,7 @@ public class SettingsMenuController implements Initializable {
 
         try {
             // Load the main menu layout
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
 
             // Change layout from practice menu to main menu

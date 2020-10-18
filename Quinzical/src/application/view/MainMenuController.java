@@ -57,7 +57,7 @@ public class MainMenuController {
     public void loadFXML(String file) {
         try {
 
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/"+ file + ".fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/"+ file + ".fxml"));
             AnchorPane rootLayout = loader.load();
             anchor.getChildren().setAll(rootLayout);
 

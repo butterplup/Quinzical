@@ -3,7 +3,7 @@
 }
 
 .button {
-    -fx-background-color: #cc142b;
+    -fx-background-color: #ffffff;
     -fx-border-color: #cc142b;
     -fx-text-fill: #ffffff;
     -fx-border-radius: 4px;
@@ -18,7 +18,7 @@
 .button:hover {
     -fx-background-color: #00247d;
     -fx-border-color: #cc142b;
-    -fx-text-fill: #ffffff;
+    -fx-text-fill: #00247d;
     -fx-border-radius: 4px;
 }
 
