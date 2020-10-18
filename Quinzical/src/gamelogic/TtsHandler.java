@@ -52,9 +52,10 @@ public class TtsHandler {
 	 */
 	public void saveSpeed(double speed) {
 		try {
+			_speed = speed;
 			FileOutputStream fileOut = new FileOutputStream("ttsspeed.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(speed);
+			out.writeObject(_speed);
 			out.close();
 			fileOut.close();
 
