@@ -26,7 +26,7 @@ public class Main extends Application{
 		
 		try {
 			// Loading in the main menu elements from fxml file
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/MainMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
 
             Scene scene = new Scene(rootLayout, 600, 400);
