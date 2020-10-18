@@ -3,7 +3,7 @@
 }
 
 .button {
-    -fx-background-color: #ffffff;
+    -fx-background-color: #cc142b;
     -fx-border-color: #cc142b;
     -fx-text-fill: #ffffff;
     -fx-border-radius: 4px;
@@ -46,9 +46,17 @@
 .label {
     -fx-text-fill: #ffffff;
     -fx-background-color: #00247d;
+    -fx-border-radius: 4px;
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-font-family: sans-serif;
     -fx-text-alignment: center;
 
 }
+
+.choice-box {
+    -fx-background-color: #0035bd;
+    -fx-mark-colour: #cc142b;
+}
+
+.choice-box .context-menu { -fx-background-color: #0035bd; }
