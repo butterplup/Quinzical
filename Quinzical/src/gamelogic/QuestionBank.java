@@ -124,5 +124,4 @@ public class QuestionBank implements Serializable{
 		}
 		return null;
 	}
-
 }

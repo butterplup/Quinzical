@@ -9,49 +9,35 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.List;
 
-/*
- * This class includes all the game-related methods that we need to
+/**
+ * This "interface" class includes all the game-related methods that we need to
  * call from ui elements for the games module.
- * HOW TO USE:
- * 	shuffle shuffles entire questionbank, so that first 5 categories are random,
- * 	and first 5 questions from each category is random.
  * 
- * 	Then buttons from GUI will call ask(0-4, 0,4) and answer(0-4,0-4)
- * 
- *  //TESTING - USE CASE
-            GameBoard gBoard = new GameBoard();
-            System.out.println(gBoard.getCategoryNames());
-            gBoard.ask(0,0);
-            
-            if (gBoard.answer(0,0,"bumbum")) {
-            	System.out.println("GOOD");
-            }
-            else System.out.println("BAD");
-            
+ * @author bs and jh
  */
 public class GameBoard implements Serializable {
 	private static final long serialVersionUID = 1L;
 	int _winnings = 0;
 	QuestionBank _qBank;
-	// randomly selected categories/questions
-	// first row is category indices
-	// second-6th row is question indices
 	boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
 
 	/**
-	 * Gets a shuffled question bank of all questions on file
+	 * The GameBoard constructor initiliases the _qBank variable containing
+	 * the question bank. Then if there is a previously saved game, updates
+	 * all relevant fields to reflect the game state.
 	 */
 	public GameBoard() {
 		_qBank = new QuestionBank();
 		// Shuffles everything
 		_qBank.shuffle();
-		// Load any saved fields
+		// Load any saved fields, overrides questionbank that was just
+		// initialised if save file found.
 		loadState();
 	}
 
 	/**
 	 *  Passes call to question bank, to ask a question
-	 * @param qIndex - desire question index
+	 * @param qIndex - desired question index
 	 * @param catIndex - desired category index
 	 * @return - string of the clue for user
 	 */
@@ -61,6 +47,9 @@ public class GameBoard implements Serializable {
 
 	/**
 	 *  Checks if the supplied answer is correct, and changes winnings accordingly
+	 * @param qIndex - desired question index
+	 * @param catIndex - desired category index
+	 * @param answer - the answer given by the user.
 	 */
 	public boolean answer(int qIndex, int catIndex, String answer) {
 		boolean wasCorrect = _qBank.answer(catIndex, qIndex, answer);
@@ -85,11 +74,11 @@ public class GameBoard implements Serializable {
 	 * update _completed, to be used to remember previous games
 	 */
 	public void loadState() {
-		File f = new File("/tmp/game-state.ser");
+		File f = new File("game-state.ser");
 		if (f.exists() && !f.isDirectory()) {
 			// do something
 			try {
-				FileInputStream fileIn = new FileInputStream("/tmp/game-state.ser");
+				FileInputStream fileIn = new FileInputStream("game-state.ser");
 				ObjectInputStream in = new ObjectInputStream(fileIn);
 				GameBoard loadedGBoard = (GameBoard) in.readObject();
 				_winnings = loadedGBoard.getWinnings();
@@ -115,7 +104,7 @@ public class GameBoard implements Serializable {
 	 */
 	public void saveState() {
 		try {
-			FileOutputStream fileOut = new FileOutputStream("/tmp/game-state.ser");
+			FileOutputStream fileOut = new FileOutputStream("game-state.ser");
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			out.writeObject(this);
 			out.close();
@@ -130,7 +119,7 @@ public class GameBoard implements Serializable {
 	 * Resets all information and deletes any save data
 	 */
 	public void reset() {
-		File file = new File("/tmp/game-state.ser");
+		File file = new File("game-state.ser");
 		file.delete();
 		_winnings=0;
 		_completed = new boolean[5][5];
@@ -138,6 +127,7 @@ public class GameBoard implements Serializable {
 	}
 	
 //GETTERS
+	
 	public int getWinnings() {
 		return _winnings;
 	}

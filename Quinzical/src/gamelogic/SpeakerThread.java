@@ -16,7 +16,7 @@ public class SpeakerThread extends Thread {
 	/**
 	 * Constructor sets up fields before run() is called
 	 * @param message
-	 * @param speed
+	 * @param speed - playback speed.
 	 */
 	public SpeakerThread(String message, double speed) {
 		_message = message;
@@ -37,7 +37,9 @@ public class SpeakerThread extends Thread {
 	}
 	
 	/**
-	 * Invoked on new thread, does not affect GUI
+	 * Passes the tts.scm file as an argument for the "festival -b" command.
+	 * This plays the specified text string using the text-to-speech tool
+	 * festival.
 	 */
 	@Override
 	public void run() {
