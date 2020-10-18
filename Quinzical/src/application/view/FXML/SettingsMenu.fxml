@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.SettingsMenuController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Label alignment="CENTER" text="Settings" BorderPane.alignment="TOP_CENTER" />
+         </center>
+         <top>
+            <Button fx:id="backBtn" alignment="CENTER" mnemonicParsing="false" onAction="#handleBackBtnClick" text="←" BorderPane.alignment="TOP_LEFT">
+               <BorderPane.margin>
+                  <Insets left="15.0" top="15.0" />
+               </BorderPane.margin></Button>
+         </top>
+         <bottom>
+            <Accordion prefHeight="280.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+              <panes>
+                <TitledPane animated="false" prefHeight="250.0" prefWidth="600.0" text="Voice Settings" textFill="WHITE">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1167b1;">
+                           <children>
+                              <Slider fx:id="voiceSlider" blockIncrement="0.25" layoutX="128.0" layoutY="93.0" majorTickUnit="1.0" max="2.0" min="0.25" onMouseReleased="#handleVoiceSpeedChange" showTickLabels="true" showTickMarks="true" style="-fx-control-inner-background: #cc142b;" value="1.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="90.0" />
+                              <Label layoutX="116.0" layoutY="35.0" text="Voice Speed">
+                                 <padding>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="defaultSpeedBtn" layoutX="245.0" layoutY="124.0" mnemonicParsing="false" onAction="#handleDefaultSpeedBtn" text="Reset to default" />
+                           </children></AnchorPane>
+                  </content>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                </TitledPane>
+                <TitledPane animated="false" text="View Settings" textFill="WHITE">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1167b1;" />
+                  </content>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                </TitledPane>
+              </panes>
+            </Accordion>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

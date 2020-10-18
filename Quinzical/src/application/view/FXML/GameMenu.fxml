@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.GameMenuController">
+   <children>
+      <BorderPane prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <Label alignment="CENTER" layoutX="223.0" layoutY="39.0" text="Games Module" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="36.0" />
+               </font>
+               <BorderPane.margin>
+                  <Insets bottom="25.0" />
+               </BorderPane.margin>
+            </Label>
+         </center>
+         <left>
+         	<Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtnClick" text="←">
+               <BorderPane.margin>
+                  <Insets left="15.0" top="15.0" />
+               </BorderPane.margin></Button>
+         </left>
+         <right>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset">
+               <BorderPane.margin>
+                  <Insets right="15.0" top="15.0" />
+               </BorderPane.margin>
+            </Button>
+         </right>
+      </BorderPane>
+      <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="80.0" />
+      <StackPane layoutY="100.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+         <children>
+             <BorderPane fx:id="resultPane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+                 <center>
+                     <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+                         <children>
+                             <Label fx:id="resultLabel" alignment="CENTER" text="Your answer was ???" />
+                             <Button mnemonicParsing="false" onAction="#handleOkBtnClick" text="Ok" />
+                         </children>
+                         <BorderPane.margin>
+                             <Insets bottom="50.0" />
+                         </BorderPane.margin></VBox>
+                 </center>
+                 <top>
+                     <Label text="Result" textFill="RED" BorderPane.alignment="CENTER">
+                         <BorderPane.margin>
+                             <Insets top="15.0" />
+                         </BorderPane.margin>
+                     </Label>
+                 </top>
+             </BorderPane>
+            <BorderPane fx:id="completedPane" layoutX="10.0" layoutY="10.0" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+               <center>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" text="You've completed the game." />
+                        <Label fx:id="finalWinningsLabel" text="Your winnings were ???" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset" />
+                              <Button mnemonicParsing="false" onAction="#handleBackBtnClick" text="Menu" />
+                           </children>
+                        </HBox>
+                     </children>
+                     <BorderPane.margin>
+                        <Insets bottom="50.0" />
+                     </BorderPane.margin>
+                  </VBox>
+               </center>
+               <top>
+                  <Label fx:id="completedLabel" text="Game Complete" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="15.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </top>
+            </BorderPane>
+		 	<BorderPane fx:id="cluePane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+		           <top>
+		              <Label text="Clue" textFill="RED" BorderPane.alignment="CENTER">
+		                 <BorderPane.margin>
+		                    <Insets top="15.0" />
+		                 </BorderPane.margin>
+		              </Label>
+		           </top>
+		           <center>
+		              <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+                     <children>
+                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                             <children>
+                                 <Label fx:id="promptLabel" alignment="CENTER" text="Prompt: " />
+                                 <TextField fx:id="answerField" alignment="CENTER" promptText="Type answer here" />
+                             </children>
+                         </HBox>
+                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                             <children>
+                                 <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="100.0" text="Repeat Clue" />
+                                 <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="190.0" text="Submit Answer / Don't Know" />
+                             </children>
+                         </HBox>
+                     </children></VBox>
+		           </center>
+		    </BorderPane>
+            <BorderPane fx:id="selectionPane" prefHeight="200.0" prefWidth="200.0">
+               <top>
+                  <Label text="Clue Selection" textFill="RED" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets top="5.0" />
+                     </BorderPane.margin>
+                     <padding>
+                        <Insets top="-10.0" />
+                     </padding>
+                  </Label>
+               </top>
+               <center>
+                  <GridPane fx:id="clueGrid" alignment="CENTER" hgap="5.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" text="Category 1" />
+                        <Label alignment="CENTER" text="Category 2" GridPane.columnIndex="1" />
+                        <Label alignment="CENTER" text="Category 3" GridPane.columnIndex="2" />
+                        <Label alignment="CENTER" text="Category 4" GridPane.columnIndex="3" />
+                        <Label alignment="CENTER" text="Category 5" GridPane.columnIndex="4" />
+                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$200" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$300" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$400" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+                        <Button alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#handleClueSelected" text="\$500" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+                     </children>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" />
+                     </padding>
+                  </GridPane>
+               </center>
+            </BorderPane>
+         </children></StackPane>
+      <Label fx:id="winningsLabel" text="Current Winnings: $0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="55.0" />
+   </children>
+</AnchorPane>
