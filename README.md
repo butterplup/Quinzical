@@ -3,10 +3,11 @@
 ## How to run Quinzical:
 
 1// extract the contents of SOFTENG206-ass3-team33.zip to an empty directory, name this directory "Quinzical".
+  1.5// Ensure you have the NZ male festival voice installed.
 
-2// open a terminal in  the "Quinzical" directory
+2// Open a terminal in  the "Quinzical" directory.
 
-3// run the command "./Quinzical.sh"
+3// Run the command "./Quinzical.sh".
 
 4// Play!
 
@@ -34,6 +35,14 @@ You have one try so make sure you are certain of your answer. Correct answers wi
 There is no punishment for wrong answers.
 After attempting all possible questions, then you are able to reset the level.
 
+### Adding Extra Clues/Categories
+
+All our clue information is stored in text files in the Quinzical/categories directory. The name of each file is the name of the category of clues contained in that file. If you wish to add a clue to any of the current categories then edit the file by adding a new line with the following format:
+
+This is the clue|prompt|Answer (e.g This person is a part of team 33 for Softeng206 2020|who is|Joel Hutchinson/Bill Song)
+
+In this format the clue shown/read to the user comes first, followed by a "|" separator, then a prompt which is the leading part of the question (eg who is/what is), followed by another "|" separator, finally type out the answer. For the answer, if there are multiple possible options then separate them with a "/".
+
 ### Exiting
 
 There is a dedicated back button from every screen that is able to return you to the main menu.
@@ -41,5 +50,5 @@ From the main menu you are able to select "Exit" in order to close the applicati
 
 ## P.S
 
-As a final word from us at Team 33 Ltd. we hope that you enjoy our alpha build of Quinzical, 
+As a final word from us at Team 33 Ltd. we hope that you enjoy our beta build of Quinzical, 
 Mā te wā!
