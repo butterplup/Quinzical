@@ -3,9 +3,11 @@
 ## How to run Quinzical:
 
 1// extract the contents of SOFTENG206-ass4-team33.zip to an empty directory, name this directory "Quinzical".
+
   1.5// Ensure you have the NZ male festival voice installed.
 
 2// Open a terminal in  the "Quinzical" directory.
+
   2.5// You may have to run the commands "chmod +x Quinzical.jar" and "chmod +x Quinzical.sh"
 
 3// Run the command "./Quinzical.sh".
