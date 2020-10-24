@@ -178,7 +178,7 @@ public class GameMenuController implements Initializable {
 
         try {
             // Reload the game menu layout
-            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/GameMenu.fxml"));
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/GameMenu.fxml"));
             AnchorPane rootLayout = loader.load();
 
             // Change layout from game menu to a new instance of game menu
