@@ -6,6 +6,7 @@ import java.util.Set;
 
 import application.Main;
 import gamelogic.ldrboard.GameRecord;
+import gamelogic.ldrboard.LeaderBoard;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,9 +38,10 @@ public class LeaderboardController implements Initializable{
     TableColumn dateColumn = new TableColumn("Date");
     
     ObservableList<GameRecord> leaderBoardData = FXCollections.observableArrayList(
-    		new GameRecord ("aosuh", 1937),
-    		new GameRecord ("HI hi Bill song", 9582)
+//    		new GameRecord ("aosuh", 1937),
+//    		new GameRecord ("HI hi Bill song", 9582)
     		);
+    
     
 //    public void setListView() {
 //    	stringSet.add("String 1");
@@ -77,9 +79,14 @@ public class LeaderboardController implements Initializable{
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		
+		LeaderBoard leaderboard = new LeaderBoard();
+		leaderBoardData = FXCollections.observableArrayList();
+		leaderBoardData.addAll(leaderboard.getLeaderBoardList());
+		
 		nameColumn.setCellValueFactory(new PropertyValueFactory<GameRecord,String>("initials"));
 	    winningsColumn.setCellValueFactory(new PropertyValueFactory<GameRecord,String>("winnings"));
 	    dateColumn.setCellValueFactory(new PropertyValueFactory<GameRecord,String>("dateString"));
+	    
 	    ldrBoardTableView.setItems(leaderBoardData);
 	}
 }

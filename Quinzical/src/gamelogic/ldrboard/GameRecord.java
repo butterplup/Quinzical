@@ -22,6 +22,13 @@ public class GameRecord {
 		
 	}
 	
+	public GameRecord(String init, int winnings, String dateString) {
+		initials= new SimpleStringProperty(init);
+		this.winnings= new SimpleIntegerProperty(winnings);
+		this.dateString = new SimpleStringProperty(dateString);
+		
+	}
+	
 //	public String getString() {
 //		System.out.println(_initials + " " + _winnings + " " + _dateString);
 //		return _initials + " " + _winnings + " " + _dateString;
@@ -37,6 +44,10 @@ public class GameRecord {
 	
 	public String getWinnings() {
 		return "$" + Integer.toString(winnings.get());
+	}
+	
+	public int getWinningsInt() {
+		return winnings.get();
 	}
 	
 	public void setWinnings(int integer) {
