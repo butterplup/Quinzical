@@ -47,7 +47,19 @@ public class MainMenuController {
     @FXML
     public void handleSettingsBtnClick() {
         this.loadFXML("SettingsMenu");
-
+    }
+    
+    @FXML
+    public void handleLeaderboardBtnClick() {
+    	loadFXML("Leaderboard");
+//    	try {
+//    		FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/Leaderboard.fxml"));
+//    		AnchorPane rootLayout = loader.load();
+//    		anchor.getChildren().setAll(rootLayout);
+//    		loader.setController(new LeaderboardController());
+//    	} catch(Exception e) {
+//    		e.printStackTrace();
+//    	}
     }
 
     /**

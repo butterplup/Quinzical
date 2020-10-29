@@ -22,6 +22,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.Callback;
 
 public class LeaderboardController implements Initializable{
+	
+	@FXML
+	private AnchorPane anchor;
+	 
 	@FXML
 	private BorderPane leaderBoardPane;
 	
@@ -37,34 +41,15 @@ public class LeaderboardController implements Initializable{
 	@FXML
     TableColumn dateColumn = new TableColumn("Date");
     
-    ObservableList<GameRecord> leaderBoardData = FXCollections.observableArrayList(
-//    		new GameRecord ("aosuh", 1937),
-//    		new GameRecord ("HI hi Bill song", 9582)
-    		);
-    
-    
-//    public void setListView() {
-//    	stringSet.add("String 1");
-//        stringSet.add("String 2");
-//        stringSet.add("String 3");
-//        stringSet.add("String 4");
-////        leaderBoardData.setAll(stringSet);
-//	    ldrBoardListView.setCellFactory(new Callback<ListView<String>, javafx.scene.control.ListCell<String>>(){
-//	    	@Override
-//	        public ListCell<String> call(ListView<String> listView)
-//	        {
-//	            return new ListCell<String>();
-//	        }
-//	    });
-//    }
+    ObservableList<GameRecord> leaderBoardData = FXCollections.observableArrayList();
+    LeaderBoard leaderboard = new LeaderBoard();
     
     public void handleBackBtnClick() {
-
         try {
-        	
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
+            anchor.getChildren().setAll(rootLayout);
             
             // Change layout from game menu to main menu
 
@@ -73,13 +58,10 @@ public class LeaderboardController implements Initializable{
             e.printStackTrace();
         } 
     }
-    
-    public void handleResetBtnClick() {}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		
-		LeaderBoard leaderboard = new LeaderBoard();
 		leaderBoardData = FXCollections.observableArrayList();
 		leaderBoardData.addAll(leaderboard.getLeaderBoardList());
 		

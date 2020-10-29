@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.GameMenuController">
    <children>
@@ -60,6 +70,12 @@
                      <children>
                         <Label alignment="CENTER" text="You've completed the game." />
                         <Label fx:id="finalWinningsLabel" text="Your winnings were ???" />
+                        <HBox alignment="CENTER">
+                           <children>
+                              <TextField id="nameInputField" fx:id="inputNameField" promptText="Enter your name here" />
+                              <Button id="subGmRcrdBtn" fx:id="subGmRcrdBtn" mnemonicParsing="false" onAction="#handleSubGmRcrdBtnClick" text="Submit" />
+                           </children>
+                        </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset" />

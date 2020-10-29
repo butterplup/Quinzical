@@ -30,13 +30,6 @@
                </BorderPane.margin>
             </Button>
          </left>
-         <right>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleResetBtnClick" text="Reset">
-               <BorderPane.margin>
-                  <Insets right="15.0" top="15.0" />
-               </BorderPane.margin>
-            </Button>
-         </right>
       </BorderPane>
       <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="80.0" />
       <TableView fx:id="ldrBoardTableView" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">

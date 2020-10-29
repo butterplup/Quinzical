@@ -24,11 +24,6 @@ public class LeaderBoard {
 	private ArrayList<GameRecord> _leaderboard = new ArrayList<GameRecord>();
 	
 	public LeaderBoard() {
-		addGameRecordNow("1asdas", 5);
-		addGameRecordNow("134543sdfs", 500);
-		addGameRecordNow("8dfgdasd", 1000);
-		addGameRecordNow("1asdas", 5);
-		saveState();
 		loadState();
 	}
 	
@@ -47,10 +42,10 @@ public class LeaderBoard {
 	 * example usage: leaderBoard.add(new GameRecord("initials", winnings))
 	 * @param gmRcrd
 	 */
+	
 	public void addGameRecord(String init, int winnings, String dateString) {
 		_leaderboard.add(new GameRecord(init, winnings, dateString));
 	}
-	
 	public void addGameRecordNow(String init, int winnings) {
 		_leaderboard.add(new GameRecord(init, winnings));
 	}
