@@ -1,7 +1,7 @@
 package application.view;
 
 import gamelogic.GameBoard;
-
+import gamelogic.ldrboard.LeaderBoard;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,6 +47,11 @@ public class GameMenuController implements Initializable {
     private Label finalWinningsLabel;
     @FXML
     private TextField answerField;
+    @FXML
+    private TextField inputNameField;
+    @FXML
+    private Button subGmRcrdBtn;
+    
     // Fields for model
     private GameBoard _gameBoard;
     private List<String> _categories;
@@ -136,7 +141,7 @@ public class GameMenuController implements Initializable {
             selectionPane.setOpacity(1);
             selectionPane.toFront();
         } else {
-        	// Otherwise display the final score, and tell them they've finished
+        	// Otherwise display the final score, and tell them they've finished, add this game to leaderboard
         	int winnings = _gameBoard.getWinnings();
             winningsLabel.setText("Final Winnings: $" + Integer.toString(winnings));
             finalWinningsLabel.setText("Your final winnings are $" + Integer.toString(winnings));
@@ -191,6 +196,17 @@ public class GameMenuController implements Initializable {
 
     }
 
+    public void handleSubGmRcrdBtnClick() {
+    	String name = inputNameField.getText();
+    	int w = _gameBoard.getWinnings();
+    	
+    	LeaderBoard ldrbrd = new LeaderBoard();
+    	ldrbrd.addGameRecordNow(name, w);
+    	ldrbrd.saveState();
+    	
+    	inputNameField.clear();
+    	subGmRcrdBtn.setDisable(true);
+    }
     /**
      * Sets the buttons to reflect their state as stored in GameBoard
      */
