@@ -46,7 +46,7 @@
 .label {
     -fx-text-fill: #ffffff;
     -fx-background-color: #00247d;
-    -fx-label-padding: 6px;
+    -fx-label-padding: 4px;
     -fx-background-radius: 4px;
     -fx-border-radius: 8px;
     -fx-font-weight: bold;
