@@ -4,12 +4,23 @@ import gamelogic.GameBoard;
 import gamelogic.ldrboard.LeaderBoard;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.TextField;
+//import javafx.scene.control;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.URL;
 import java.util.List;
@@ -51,6 +62,10 @@ public class GameMenuController implements Initializable {
     private TextField inputNameField;
     @FXML
     private Button subGmRcrdBtn;
+    @FXML
+    private Label timerLabel;
+    @FXML
+    private ProgressBar timerBar;
     
     // Fields for model
     private GameBoard _gameBoard;
@@ -59,6 +74,9 @@ public class GameMenuController implements Initializable {
     private int _questionIndex;
     private int _categoryIndex;
     private boolean _remaining = true;
+    private static final Integer STARTTIME = 8;
+    private IntegerProperty timerSeconds = new SimpleIntegerProperty(STARTTIME*100);
+    private Timeline timeline;
 
     /**
      * Handles events caused by any of the clue buttons.
@@ -87,6 +105,7 @@ public class GameMenuController implements Initializable {
         _questionStr = _gameBoard.ask(_questionIndex, _categoryIndex);
         promptLabel.setText(_gameBoard.getPrompt(_questionIndex, _categoryIndex));
 
+        handleTimerStarted();
         // Make category selector BorderPane opacity = 0
         selectionPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1
@@ -95,7 +114,32 @@ public class GameMenuController implements Initializable {
 
     }
 
-    /**
+    private void handleTimerStarted() {
+    	
+    	timerBar.progressProperty().bind(
+    	        timerSeconds.divide(STARTTIME*100.0));
+    	timerLabel.textProperty().bind(timerSeconds.divide(100).asString());
+		if (timeline != null) {
+			timeline.stop();
+		}
+		
+		timerSeconds.set((STARTTIME+1)*100);
+		
+		timeline = new Timeline();
+    	timeline.setOnFinished((new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(final ActionEvent actionEvent) {
+                handleSubmitBtnClick();
+                }
+		}));
+    	
+		timeline.getKeyFrames().add(
+				new KeyFrame(Duration.seconds(STARTTIME + 1),
+				new KeyValue(timerSeconds, 0)));
+		timeline.playFromStart();
+	}
+
+	/**
      * Repeats the clue message through tts
      */
     public void handleRepeatBtnClick() {
