@@ -157,11 +157,6 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
         submitBtn.setDisable(false);
         repeatBtn.setDisable(false);
 	}
-	
-    private void handleOutOfTime() {
-    	System.out.println("OUT OF TIME!");
-    	
-    }
 
     private void startTimer() {
     	
@@ -173,7 +168,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
         	timeline.setOnFinished((new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(final ActionEvent actionEvent) {
-                    handleOutOfTime();
+                    handleSubmitBtnClick();
                     }
     		}));
         	
@@ -273,6 +268,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
             completedPane.toFront();
         }
     }
+    
     /**
      * Meant to take user back to main menu screen.
      * Handles the back button events.
