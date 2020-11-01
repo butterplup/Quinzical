@@ -383,11 +383,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
             	// Disable if it has been completed
                 Button clueBtn = (Button) node;
                 clueBtn.setDisable(true);
-                if (_gameBoard.isCorrect(clueVal-1, catVal)) {
-                	clueBtn.setStyle("-fx-background-color: #338333; -fx-text-fill: #e6f0e6;");
-                } else {
-                	clueBtn.setStyle("-fx-background-color: #800000; -fx-text-fill: #b96666;");
-                }
+                clueBtn.setStyle("-fx-background-color: #800000; -fx-text-fill: #b96666;");
                 // Check if it is non-first row button that has no higher un-attempted clues
             } else if (clueVal != 1) {
                 if (_gameBoard.isCompleted(clueVal-2,catVal)) {

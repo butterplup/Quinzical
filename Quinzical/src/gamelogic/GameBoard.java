@@ -20,7 +20,6 @@ public class GameBoard implements Serializable {
 	private int _winnings = 0;
 	private QuestionBank _qBank;
 	private boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
-	private boolean[][] _correct = new boolean [5][5];
 	private boolean _intSectionAnnounced=false;
 
 	/**
@@ -217,11 +216,6 @@ public class GameBoard implements Serializable {
 			}
 		}
 		return categoriesComplete;
-	}
-
-	public boolean isCorrect(int clueVal, int catVal) {
-		
-		return _correct[clueVal][catVal];
 	}
 
 }
