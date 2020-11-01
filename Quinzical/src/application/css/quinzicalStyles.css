@@ -69,6 +69,20 @@
 
 }
 
+.list-view {
+    -fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);
+}
+
+.list-cell:even {
+    -fx-background-color: #00247d;
+    -fx-text-fill: #ffffff;
+}
+
+.list-cell:odd {
+    -fx-background-color: #0035bd;
+    -fx-text-fill: #ffffff;
+}
+
 .accordion .titled-pane {
     -fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);
 }

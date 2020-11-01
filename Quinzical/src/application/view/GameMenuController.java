@@ -1,6 +1,7 @@
 package application.view;
 
 import gamelogic.GameBoard;
+import gamelogic.QuestionBank;
 import gamelogic.ldrboard.LeaderBoard;
 import gamelogic.textToSpeech.TextToSpeechThread;
 import gamelogic.textToSpeech.ThreadCompleteListener;
@@ -16,12 +17,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
+import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
@@ -60,6 +57,8 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     @FXML
     private BorderPane completedPane;
     @FXML
+    private BorderPane categoryPane;
+    @FXML
     private GridPane clueGrid;
     @FXML
     private Label promptLabel;
@@ -83,6 +82,10 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     private Button submitBtn;
     @FXML
     private Button repeatBtn;
+    @FXML
+    private ChoiceBox<String> selectCategory;
+    @FXML
+    private ListView<String> categoryListView;
     
     private IntAlert alert = new IntAlert();
     
@@ -96,7 +99,27 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     private static final Integer STARTTIME = 8;
     private IntegerProperty timerSeconds = new SimpleIntegerProperty(STARTTIME*100);
     private Timeline timeline = new Timeline();
-    
+
+
+    public void handleCategorySelected() {
+        // Get the String representing the name of selected category
+        String categoryName = selectCategory.getValue();
+        categoryListView.getItems().add(categoryName);
+
+    }
+
+    public void handleCategoriesFinalised() {
+
+        _categories = categoryListView.getItems();
+        // Reflect any loaded state in GUI
+        updateBoardState();
+
+        // Make category selector BorderPane opacity = 0
+        categoryPane.setOpacity(0);
+        // Make question presenter BorderPane opacity = 1, and move to front
+        selectionPane.setOpacity(1);
+        selectionPane.toFront();
+    }
 
     /**
      * Handles events caused by any of the clue buttons.
@@ -422,6 +445,13 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
         _categories = _gameBoard.getCategoryNames();
         // Reflect any loaded state in GUI
         updateBoardState();
+
+        // Initialise QuestionBank object for use of PracticeMenu
+        QuestionBank QBank = new QuestionBank();
+        // Make call to the QuestionBank object to get all the names of categories
+        List<String> allCategories = QBank.getAllCategories();
+        // Adds all the category names to the ChoiceBox for selection
+        selectCategory.getItems().addAll(allCategories);
 
     }
 
