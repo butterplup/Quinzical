@@ -181,11 +181,11 @@
                         </ProgressBar>
                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                              <children>
-                                 <Button fx:id="repeatBtn" mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="160.0" text="Repeat Clue">
+                                 <Button fx:id="repeatBtn" mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="180.0" text="Repeat Clue">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                                 <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="310.0" text="Submit Answer / Don't Know">
+                                 <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="370.0" text="Submit Answer / Don't Know">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
@@ -444,7 +444,7 @@
                </center>
             </BorderPane>
          </children></StackPane>
-      <Label fx:id="winningsLabel" text="Current Winnings: $0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="100.0">
+      <Label fx:id="winningsLabel" text="Current Winnings: $0" AnchorPane.leftAnchor="25.0" AnchorPane.topAnchor="90.0">
          <font>
             <Font size="24.0" />
          </font></Label>
