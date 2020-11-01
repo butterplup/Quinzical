@@ -32,7 +32,7 @@ public class QuestionBank implements Serializable{
 	}
 	
 	/**
-	 * Asks a particular question
+	 * Asks a particular question, reading out the clue with text-to-speech.
 	 * @param CatIndex - desired index
 	 * @param QstnIndex - desired index
 	 * @return a string of the clue
