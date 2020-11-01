@@ -27,9 +27,9 @@
          <bottom>
             <Accordion prefHeight="580.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
               <panes>
-                <TitledPane animated="false" prefHeight="540.0" prefWidth="1280.0" text="Voice Settings" textFill="WHITE">
+                <TitledPane animated="false" prefHeight="540.0" prefWidth="1280.0" styleClass="title" text="Voice Settings" textFill="WHITE">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1167b1;">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);;">
                            <children>
                               <Slider fx:id="voiceSlider" blockIncrement="0.25" layoutX="128.0" layoutY="93.0" majorTickUnit="1.0" max="2.0" min="0.25" onMouseReleased="#handleVoiceSpeedChange" showTickLabels="true" showTickMarks="true" style="-fx-control-inner-background: #cc142b;" value="1.0" AnchorPane.bottomAnchor="90.0" AnchorPane.leftAnchor="128.0" AnchorPane.rightAnchor="128.0" AnchorPane.topAnchor="90.0" />
                               <Label layoutX="142.0" layoutY="51.0" text="Voice Speed">
@@ -52,7 +52,7 @@
                 </TitledPane>
                 <TitledPane animated="false" text="View Settings" textFill="WHITE">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #1167b1;" />
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);;" />
                   </content>
                      <font>
                         <Font name="Arial" size="18.0" />

@@ -172,11 +172,11 @@
                         </ProgressBar>
                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                              <children>
-                                 <Button fx:id="repeatBtn" mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="140.0" text="Repeat Clue">
+                                 <Button fx:id="repeatBtn" mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="160.0" text="Repeat Clue">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
-                                 <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="280.0" text="Submit Answer / Don't Know">
+                                 <Button fx:id="submitBtn" mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="310.0" text="Submit Answer / Don't Know">
                                  <font>
                                     <Font size="18.0" />
                                  </font></Button>
@@ -220,23 +220,38 @@
                         <Label alignment="CENTER" text="Category 1">
                            <font>
                               <Font size="20.0" />
-                           </font></Label>
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin></Label>
                         <Label alignment="CENTER" text="Category 2" GridPane.columnIndex="1">
                            <font>
                               <Font size="20.0" />
-                           </font></Label>
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin></Label>
                         <Label alignment="CENTER" text="Category 3" GridPane.columnIndex="2">
                            <font>
                               <Font size="20.0" />
-                           </font></Label>
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin></Label>
                         <Label alignment="CENTER" text="Category 4" GridPane.columnIndex="3">
                            <font>
                               <Font size="20.0" />
-                           </font></Label>
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin></Label>
                         <Label alignment="CENTER" text="Category 5" GridPane.columnIndex="4">
                            <font>
                               <Font size="20.0" />
-                           </font></Label>
+                           </font>
+                           <GridPane.margin>
+                              <Insets left="60.0" />
+                           </GridPane.margin></Label>
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleClueSelected" text="\$100" GridPane.rowIndex="1">
                            <GridPane.margin>
                               <Insets left="80.0" />

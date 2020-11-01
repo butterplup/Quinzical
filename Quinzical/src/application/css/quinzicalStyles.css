@@ -73,6 +73,16 @@
     -fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);
 }
 
+.titled-pane > .title {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #00247d;
+}
+
+.titled-pane {
+    -fx-text-fill: #ffffff;
+    -fx-background-color: linear-gradient(#0035bd 0%, #00247d 100%);
+}
+
 .choice-box {
     -fx-background-color: #0035bd;
     -fx-mark-colour: #cc142b;

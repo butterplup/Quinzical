@@ -131,11 +131,11 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="120.0" text="Repeat Clue">
+                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="150.0" text="Repeat Clue">
                                  <font>
                                     <Font size="16.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="150.0" text="Submit Answer">
+                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="180.0" text="Submit Answer">
                                  <font>
                                     <Font size="16.0" />
                                  </font></Button>

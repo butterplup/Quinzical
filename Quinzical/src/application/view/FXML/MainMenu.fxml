@@ -49,11 +49,11 @@
             <Separator prefHeight="0.0" prefWidth="600.0" />
             <HBox alignment="CENTER" spacing="10.0">
             	<children>
-            	    <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#handleSettingsBtnClick" prefHeight="30.0" prefWidth="100.0" text="Settings">
+            	    <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#handleSettingsBtnClick" prefHeight="30.0" prefWidth="110.0" text="Settings">
                      <font>
                         <Font size="18.0" />
                      </font></Button>
-            		<Button fx:id="exitBtn" mnemonicParsing="false" onAction="#handleExitBtnClick" prefHeight="30.0" prefWidth="100.0" text="Exit">
+            		<Button fx:id="exitBtn" mnemonicParsing="false" onAction="#handleExitBtnClick" prefHeight="30.0" prefWidth="110.0" text="Exit">
                      <font>
                         <Font size="18.0" />
                      </font></Button>
