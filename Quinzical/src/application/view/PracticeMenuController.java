@@ -1,6 +1,7 @@
 package application.view;
 
 import gamelogic.Category;
+import gamelogic.GameBoard;
 import gamelogic.QuestionBank;
 
 import javafx.event.ActionEvent;
@@ -222,11 +223,16 @@ public class PracticeMenuController implements Initializable {
 
         // Initialise QuestionBank object for use of PracticeMenu
         _practiceQBank = new QuestionBank();
+        
+        GameBoard _gameBoard = new GameBoard();
+    	if (_gameBoard.intSectionEnabled()) {
+    		_practiceQBank.addIntSection();
+    	}
+    	
     	// Make call to the QuestionBank object to get all the names of categories
         List<String> allCategories = _practiceQBank.getAllCategories();
         // Adds all the category names to the ChoiceBox for selection
         selectCategory.getItems().addAll(allCategories);
-    	
+        
     }
-    
 }

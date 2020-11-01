@@ -16,6 +16,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -82,6 +84,8 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     @FXML
     private Button repeatBtn;
     
+    private IntAlert alert = new IntAlert();
+    
     // Fields for model
     private GameBoard _gameBoard;
     private List<String> _categories;
@@ -92,6 +96,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     private static final Integer STARTTIME = 8;
     private IntegerProperty timerSeconds = new SimpleIntegerProperty(STARTTIME*100);
     private Timeline timeline = new Timeline();
+    
 
     /**
      * Handles events caused by any of the clue buttons.
@@ -247,13 +252,18 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
      */
     public void handleOkBtnClick() {
         resultPane.setOpacity(0);
-
+        
+        if (_gameBoard.intSectionEnabled()&&!_gameBoard.getIntSectionAnnounced()){
+        	alert.showAndWait();
+        	_gameBoard.setIntSectionAnnounced(true);
+        }
         //If any questions remain then
         if (_remaining) {
         	// Show user the clue selection screen
             selectionPane.setOpacity(1);
             selectionPane.toFront();
-        } else {
+        } 
+        else {
         	// Otherwise display the final score, and tell them they've finished, add this game to leaderboard
         	int winnings = _gameBoard.getWinnings();
             winningsLabel.setText("Final Winnings: $" + Integer.toString(winnings));
@@ -406,6 +416,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    	
     	// Initialise and load GameBoard object
         _gameBoard = new GameBoard();
         // Make call to the GameBoard object to get any saved winnings
