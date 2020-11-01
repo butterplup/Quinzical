@@ -80,6 +80,7 @@
 
 .titled-pane {
     -fx-text-fill: #ffffff;
+    -fx-font-size: 20px;
     -fx-background-color: linear-gradient(#0035bd 0%, #00247d 100%);
 }
 

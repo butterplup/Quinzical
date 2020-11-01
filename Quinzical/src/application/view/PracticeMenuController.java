@@ -151,8 +151,15 @@ public class PracticeMenuController implements Initializable {
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
                 hintLabel.setText("No more attempts.");
-                incorrectLabels.getChildren().add(2,new Label("The clue was: " + _questionStr));
-                incorrectLabels.getChildren().add(3,new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX)));
+                
+                Label clueLabel = new Label("The clue was: " + _questionStr);
+                Label answerLabel = new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX));
+                
+                clueLabel.setStyle("-fx-font-size: 20px;");
+                answerLabel.setStyle("-fx-font-size: 20px;");
+                
+                incorrectLabels.getChildren().add(2,clueLabel);
+                incorrectLabels.getChildren().add(3,answerLabel);
                 // Cannot attempt again
                 retryBtn.setDisable(true);
                 // Offer the option to return to menu
