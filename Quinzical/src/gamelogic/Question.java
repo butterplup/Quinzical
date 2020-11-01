@@ -24,10 +24,8 @@ public class Question implements Serializable{
 	 */
 	public Question(String question, String answer, String whatX) {
 		
-		//process answer to remove macrons
-		String normalised = Normalizer.normalize(answer, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
 		_question = question;
-		_answer = normalised.split("/");
+		_answer = answer.split("/");
 		_whatX = whatX;
 	}
 	
