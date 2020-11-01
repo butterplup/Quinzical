@@ -64,10 +64,10 @@ public class GameBoard implements Serializable {
 	 * Reads out a desired string message to user
 	 * @param message - string they want read out
 	 */
-	public void say(String message) {
-		TtsHandler speaker = new TtsHandler();
-		speaker.say(message);
-	}
+//	public void say(String message) {
+//		TtsHandler speaker = new TtsHandler();
+//		speaker.say(message);
+//	}
 	
 	/*
 	 * if fresh instance, do nothing. if saved state exists, update _winnings,

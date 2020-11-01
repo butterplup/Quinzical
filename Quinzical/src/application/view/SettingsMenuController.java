@@ -1,7 +1,7 @@
 package application.view;
 
 import application.Main;
-import gamelogic.TtsHandler;
+import gamelogic.textToSpeech.TextToSpeechThread;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,7 +31,7 @@ public class SettingsMenuController implements Initializable {
     @FXML
     private Button defaultSpeedBtn;
     // Used to demo tts
-    private TtsHandler _ttsHandler;
+    private TextToSpeechThread _ttsHandler;
 
     /**
      * Takes user back to main menu
@@ -61,7 +61,9 @@ public class SettingsMenuController implements Initializable {
         // Saves value of speed to be used elsewhere
         _ttsHandler.saveSpeed(roundedValue);
         // Demo reads out string to listen to speed in action
-        _ttsHandler.say("You have chosen to set voice speed to " + roundedValue + " times default");
+        _ttsHandler = new TextToSpeechThread("You have chosen to set voice speed to " + roundedValue + " times default");
+        _ttsHandler.start();
+//        _ttsHandler.say("You have chosen to set voice speed to " + roundedValue + " times default");
 
     }
 
@@ -74,7 +76,10 @@ public class SettingsMenuController implements Initializable {
         System.out.println("Speed set to 1x");
         Double roundedValue = new BigDecimal(voiceSlider.getValue()).setScale(2, RoundingMode.HALF_UP).doubleValue();
         _ttsHandler.saveSpeed(roundedValue);
-        _ttsHandler.say("You have reset the voice speed to default, which is 1 times speed");
+        
+        _ttsHandler = new TextToSpeechThread("You have chosen to set voice speed to " + roundedValue + " times default");
+        _ttsHandler.start();
+//        _ttsHandler.say("You have reset the voice speed to default, which is 1 times speed");
     }
 
     /**
@@ -82,6 +87,7 @@ public class SettingsMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        _ttsHandler = new TtsHandler();
+        _ttsHandler = new TextToSpeechThread();
+        voiceSlider.setValue(_ttsHandler.loadSpeed());
     }
 }
