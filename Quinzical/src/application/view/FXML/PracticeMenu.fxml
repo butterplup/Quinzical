@@ -24,7 +24,7 @@
                   <Insets left="15.0" top="15.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="20.0" />
                </font></Button>
          </left>
       </BorderPane>
@@ -123,7 +123,7 @@
                                  <font>
                                     <Font size="20.0" />
                                  </font></Label>
-                              <TextField fx:id="answerField" alignment="CENTER" promptText="Type answer here">
+                              <TextField fx:id="answerField" alignment="CENTER" onKeyPressed="#handleSubmitKey" promptText="Type answer here">
                                  <font>
                                     <Font size="16.0" />
                                  </font></TextField>
@@ -131,11 +131,11 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="120.0" text="Repeat Clue">
+                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="150.0" text="Repeat Clue">
                                  <font>
                                     <Font size="16.0" />
                                  </font></Button>
-                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="150.0" text="Submit Answer">
+                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="180.0" text="Submit Answer">
                                  <font>
                                     <Font size="16.0" />
                                  </font></Button>

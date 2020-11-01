@@ -5,12 +5,16 @@ import gamelogic.ldrboard.LeaderBoard;
 import gamelogic.textToSpeech.TextToSpeechThread;
 import gamelogic.textToSpeech.ThreadCompleteListener;
 import gamelogic.textToSpeech.NotifyingThread;
+
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -18,12 +22,16 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
+
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
@@ -35,7 +43,7 @@ import application.Main;
 
 /**
  * The controller class for the game module GUI
- * @author jh
+ * @author jh and bs
  *
  */
 public class GameMenuController implements Initializable, ThreadCompleteListener{
@@ -137,7 +145,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
 
 
     }
-    
+
 	@Override
 	public void notifyOfThreadComplete(Thread thread) {
 		Platform.runLater(new Runnable() {
@@ -185,6 +193,16 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
 		ttsThread.addListener(this); // add ourselves as a listener
 		ttsThread.start(); // Start the Thread
 	}
+
+    /**
+     * Checks to see if user hit the enter key as another option for submitting
+     * @param keyEvent - fired when a key has been pressed
+     */
+	public void handleSubmitKey(KeyEvent keyEvent) {
+	    if (keyEvent.getCode() == KeyCode.ENTER) {
+	        this.handleSubmitBtnClick();
+        }
+    }
 
     /**
      * Gets the user's input for the answer and checks whether it is correct.
@@ -289,6 +307,12 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
             e.printStackTrace();
         }
 
+    }
+
+    public void leaderbrdNameSubmitKey(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            this.handleSubGmRcrdBtnClick();
+        }
     }
 
     public void handleSubGmRcrdBtnClick() {

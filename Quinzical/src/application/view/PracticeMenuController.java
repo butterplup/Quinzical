@@ -8,6 +8,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -117,6 +119,16 @@ public class PracticeMenuController implements Initializable {
     }
 
     /**
+     * Checks to see if user hit the enter key as another option for submitting
+     * @param keyEvent - fired when a key has been pressed
+     */
+    public void handleSubmitKey(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            this.handleSubmitBtnClick();
+        }
+    }
+
+    /**
      * Reads the user input and checks if the answer is correct,
      * implements a three strikes rule
      */
@@ -140,8 +152,15 @@ public class PracticeMenuController implements Initializable {
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
                 hintLabel.setText("No more attempts.");
-                incorrectLabels.getChildren().add(2,new Label("The clue was: " + _questionStr));
-                incorrectLabels.getChildren().add(3,new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX)));
+                
+                Label clueLabel = new Label("The clue was: " + _questionStr);
+                Label answerLabel = new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX));
+                
+                clueLabel.setStyle("-fx-font-size: 20px;");
+                answerLabel.setStyle("-fx-font-size: 20px;");
+                
+                incorrectLabels.getChildren().add(2,clueLabel);
+                incorrectLabels.getChildren().add(3,answerLabel);
                 // Cannot attempt again
                 retryBtn.setDisable(true);
                 // Offer the option to return to menu
