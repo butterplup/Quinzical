@@ -300,6 +300,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
 
         try {
         	_gameBoard.saveState();
+        	timeline.stop();
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
@@ -311,6 +312,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
         	// Print in case of any errors
             e.printStackTrace();
         } 
+        
     }
 
     /**
