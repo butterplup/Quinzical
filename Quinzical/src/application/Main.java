@@ -29,7 +29,7 @@ public class Main extends Application{
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
 
-            Scene scene = new Scene(rootLayout, 600, 400);
+            Scene scene = new Scene(rootLayout, 1280, 720);
             // Add css stylings to the GUI
             scene.getStylesheets().add(getClass().getResource("css/quinzicalStyles.css").toExternalForm());
 

@@ -1,46 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchor" minHeight="300.0" minWidth="200.0" prefHeight="400.0" prefWidth="600.0" styleClass="root" stylesheets="@../../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainMenuController">
+<AnchorPane fx:id="anchor" prefHeight="720.0" prefWidth="1280.0" styleClass="root" stylesheets="@../../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.MainMenuController">
    <children>
       <VBox alignment="CENTER" layoutX="274.0" layoutY="82.0" prefHeight="400.0" prefWidth="600.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label styleClass="title" text="Quinzical">
                <font>
-                  <Font size="32.0" />
+                  <Font size="64.0" />
                </font>
                <styleClass>
                   <String fx:value="title" />
                </styleClass>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
             </Label>
             <Separator prefHeight="0.0" prefWidth="600.0" />
             <VBox alignment="CENTER" spacing="15.0">
                <children>
                   <Label styleClass="label" text="Modules">
-                  </Label>
-                  <Button id="practiceBtn" fx:id="practiceBtn" mnemonicParsing="false" onAction="#handlePracticeBtnClick" prefWidth="80.0" text="Practice">
-                  </Button>
-                  <Button id="gamesBtn" fx:id="gamesBtn" mnemonicParsing="false" onAction="#handleGamesBtnClick" prefWidth="80.0" text="Games">
+                     <font>
+                        <Font size="36.0" />
+                     </font></Label>
+                  <Button id="practiceBtn" fx:id="practiceBtn" mnemonicParsing="false" onAction="#handlePracticeBtnClick" prefHeight="30.0" prefWidth="120.0" text="Practice">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button id="gamesBtn" fx:id="gamesBtn" mnemonicParsing="false" onAction="#handleGamesBtnClick" prefHeight="30.0" prefWidth="120.0" text="Games">
                      <styleClass>
                         <String fx:value="button" />
                      </styleClass>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Button>
-                  <Button id="leaderboardBtn" fx:id="leaderboardBtn" mnemonicParsing="false" onAction="#handleLeaderboardBtnClick" prefWidth="80.0" styleClass="button" text="Leaderboard" />
+                  <Button id="leaderboardBtn" fx:id="leaderboardBtn" mnemonicParsing="false" onAction="#handleLeaderboardBtnClick" prefHeight="30.0" prefWidth="120.0" styleClass="button" text="Leaderboard">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
             </VBox>
             <Separator prefHeight="0.0" prefWidth="600.0" />
             <HBox alignment="CENTER" spacing="10.0">
             	<children>
-            	    <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#handleSettingsBtnClick" prefWidth="80.0" text="Settings" />
-            		<Button fx:id="exitBtn" mnemonicParsing="false" onAction="#handleExitBtnClick" prefWidth="80.0" text="Exit" />
+            	    <Button fx:id="settingsBtn" mnemonicParsing="false" onAction="#handleSettingsBtnClick" prefHeight="30.0" prefWidth="80.0" text="Settings">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+            		<Button fx:id="exitBtn" mnemonicParsing="false" onAction="#handleExitBtnClick" prefHeight="30.0" prefWidth="80.0" text="Exit">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
             	</children>
             </HBox>
          </children>

@@ -6,10 +6,10 @@
     -fx-background-color: #cc142b;
     -fx-border-color: #cc142b;
     -fx-text-fill: #ffffff;
+    -fx-background-radius: 4px;
     -fx-border-radius: 4px;
     -fx-text-alignment: center;
     -fx-cursor: pointer;
-    -fx-font-size: 12px;
     -fx-font-weight: bold;
     -fx-font-family: sans-serif;
 
@@ -18,7 +18,7 @@
 .button:hover {
     -fx-background-color: #00247d;
     -fx-border-color: #cc142b;
-    -fx-text-fill: #00247d;
+    -fx-text-fill: #ffffff;
     -fx-border-radius: 4px;
 }
 
@@ -36,18 +36,12 @@
 
 }
 
-.title {
-    -fx-font-size: 32px;
-    -fx-text-fill: #ffffff;
-    -fx-background-color: #00247d;
-
-}
-
 .label {
     -fx-text-fill: #ffffff;
     -fx-background-color: #00247d;
-    -fx-border-radius: 4px;
-    -fx-font-size: 20px;
+    -fx-label-padding: 4px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 8px;
     -fx-font-weight: bold;
     -fx-font-family: sans-serif;
     -fx-text-alignment: center;
@@ -62,3 +56,40 @@
 .choice-box .context-menu {
     -fx-background-color: #0035bd;
 }
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .filler {
+    -fx-background-color: transparent;
+}
+
+.table-view:focused {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: #ffffff;
+}
+
+.table-row-cell {
+    -fx-background-color: -fx-table-cell-border-color, #00247d;
+}
+
+.table-view-cell:odd {
+    -fx-background-color: -fx-table-cell-border-color, #0035bd;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #337dff;
+}
+
