@@ -225,7 +225,6 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
             resultLabel.setText("Your answer was correct! Good job!");
             NotifyingThread ttsThread = new TextToSpeechThread("Your answer was correct!");
             ttsThread.start();
-            _gameBoard.makeCorrect(_questionIndex, _categoryIndex);
             
         } else {
             resultLabel.setText("You were not correct.");
