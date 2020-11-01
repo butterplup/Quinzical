@@ -3,7 +3,9 @@ package application.view;
 import gamelogic.Category;
 import gamelogic.GameBoard;
 import gamelogic.QuestionBank;
-
+import gamelogic.textToSpeech.NotifyingThread;
+import gamelogic.textToSpeech.TextToSpeechThread;
+import gamelogic.textToSpeech.ThreadCompleteListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,7 +24,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import javafx.scene.layout.VBox;
 
-public class PracticeMenuController implements Initializable {
+public class PracticeMenuController implements Initializable, ThreadCompleteListener{
     // For choosing the first index of the category
     private final int Q_INDEX = 1;
     // FXML specific fields loaded in from file
@@ -52,6 +54,8 @@ public class PracticeMenuController implements Initializable {
     private TextField answerField;
     @FXML
     private Button retryBtn;
+    @FXML
+    private Button repeatBtn;
     // Fields for use as model
     private QuestionBank _practiceQBank;
     private Category _selectedCategory;
@@ -86,6 +90,12 @@ public class PracticeMenuController implements Initializable {
         clueText.setText(_questionStr);
         promptLabel.setText(_selectedCategory.getQPrompt(Q_INDEX) + ": ");
 
+        repeatBtn.setDisable(true);
+        
+        NotifyingThread ttsThread = new TextToSpeechThread(_questionStr);
+        ttsThread.addListener(this); // add ourselves as a listener
+        ttsThread.start();           // Start the Thread
+        
         // Make category selector BorderPane opacity = 0
         selectorPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1, and move to front
@@ -117,6 +127,10 @@ public class PracticeMenuController implements Initializable {
      */
     public void handleRepeatBtnClick() {
         _selectedCategory.ask(1);
+        repeatBtn.setDisable(true);
+        NotifyingThread ttsThread = new TextToSpeechThread(_questionStr);
+        ttsThread.addListener(this); // add ourselves as a listener
+        ttsThread.start();           // Start the Thread
     }
 
     /**
@@ -235,4 +249,9 @@ public class PracticeMenuController implements Initializable {
         selectCategory.getItems().addAll(allCategories);
         
     }
+
+	@Override
+	public void notifyOfThreadComplete(Thread thread) {
+		  repeatBtn.setDisable(false);
+	}
 }

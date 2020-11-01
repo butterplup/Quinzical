@@ -140,7 +140,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="180.0" text="Repeat Clue">
+                              <Button fx:id="repeatBtn" mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="180.0" text="Repeat Clue">
                                  <font>
                                     <Font size="16.0" />
                                  </font></Button>
