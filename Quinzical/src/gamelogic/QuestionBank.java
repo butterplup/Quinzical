@@ -22,7 +22,7 @@ public class QuestionBank implements Serializable{
 	 * Gets all of the categories in file and makes Category objects
 	 */
 	public QuestionBank() {
-		File directory = new File("categories");
+		File directory = new File("categories/NZ");
 		   File categoryList[] = directory.listFiles();
 		   // Loops through all of the files names
 		   for (File category: categoryList)
@@ -78,6 +78,12 @@ public class QuestionBank implements Serializable{
 		}
 	}
 
+	public void addIntSection() {
+		File international = new File("categories/international/international");
+		_categories.add(new Category(international));
+		//move international category to front of list
+		Collections.swap(_categories, 0, _categories.size()-1);
+	}
 	/**
 	 * Gets the specific prompt text for this question
 	 * @param question - desired index
