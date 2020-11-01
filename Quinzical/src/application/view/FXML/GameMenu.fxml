@@ -138,7 +138,7 @@
 		           <top>
 		              <Label text="Clue" textFill="RED" BorderPane.alignment="CENTER">
 		                 <BorderPane.margin>
-		                    <Insets top="15.0" />
+		                    <Insets bottom="50.0" top="15.0" />
 		                 </BorderPane.margin>
                      <font>
                         <Font size="24.0" />
@@ -160,6 +160,15 @@
                                  </font></TextField>
                              </children>
                          </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ā" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ē" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ī" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ō" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ū" />
+                           </children>
+                        </HBox>
                         <Label fx:id="timerLabel" alignment="CENTER" contentDisplay="CENTER" text="8">
                            <font>
                               <Font size="20.0" />

@@ -190,6 +190,16 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
 	}
 
     /**
+     * Adds the vowel with macron of the corresponding button to the textfield
+     * @param event - event of the button clicked
+     */
+	public void handleLetterAdd(ActionEvent event) {
+	    Button clickedBtn = (Button) event.getSource();
+	    String letter = clickedBtn.getText();
+        answerField.setText(answerField.getText() + letter);
+    }
+
+    /**
      * Checks to see if user hit the enter key as another option for submitting
      * @param keyEvent - fired when a key has been pressed
      */

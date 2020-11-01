@@ -131,6 +131,15 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ā" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ē" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ī" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ō" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ū" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
                               <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="150.0" text="Repeat Clue">
                                  <font>
                                     <Font size="16.0" />

@@ -3,6 +3,7 @@ package application.view;
 import gamelogic.Category;
 import gamelogic.QuestionBank;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -115,6 +116,16 @@ public class PracticeMenuController implements Initializable {
      */
     public void handleRepeatBtnClick() {
         _selectedCategory.ask(1);
+    }
+
+    /**
+     * Adds the vowel with macron of the corresponding button to the textfield
+     * @param event - event of the button clicked
+     */
+    public void handleLetterAdd(ActionEvent event) {
+        Button clickedBtn = (Button) event.getSource();
+        String letter = clickedBtn.getText();
+        answerField.setText(answerField.getText() + letter);
     }
 
     /**
