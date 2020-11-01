@@ -21,7 +21,7 @@
                   <Insets left="15.0" top="15.0" />
                </BorderPane.margin>
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="System Bold" size="20.0" />
                </font></Button>
          </top>
          <bottom>
@@ -58,6 +58,14 @@
                         <Font name="Arial" size="18.0" />
                      </font>
                 </TitledPane>
+                  <TitledPane animated="false" text="User Guides" textFill="WHITE">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="titled-pane" />
+                    </content>
+                     <font>
+                        <Font name="Arial" size="18.0" />
+                     </font>
+                  </TitledPane>
               </panes>
             </Accordion>
          </bottom>

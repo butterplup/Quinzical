@@ -7,6 +7,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -113,6 +115,16 @@ public class PracticeMenuController implements Initializable {
      */
     public void handleRepeatBtnClick() {
         _selectedCategory.ask(1);
+    }
+
+    /**
+     * Checks to see if user hit the enter key as another option for submitting
+     * @param keyEvent - fired when a key has been pressed
+     */
+    public void handleSubmitKey(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            this.handleSubmitBtnClick();
+        }
     }
 
     /**

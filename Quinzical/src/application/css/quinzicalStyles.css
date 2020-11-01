@@ -16,6 +16,7 @@
 }
 
 .button:hover {
+    -fx-font-size: 16px;
     -fx-background-color: #00247d;
     -fx-border-color: #cc142b;
     -fx-text-fill: #ffffff;
@@ -24,16 +25,34 @@
 
 .button:pressed {
     -fx-background-color: #cc142b;
-    -fx-border-color: #00247d;
-    -fx-text-fill: #ffffff;
     -fx-background-size: 80%;
     -fx-background-position: center;
+
+    -fx-border-color: #00247d;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+
 }
 
 .button:disabled {
     -fx-opacity: 0.6;
     -fx-cursor: not-allowed;
+}
 
+.button-correct:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: not-allowed;
+
+    -fx-background-color: #338333;
+    -fx-text-fill: #e6f0e6;
+}
+
+.button-incorrect:disabled {
+    -fx-opacity: 0.6;
+    -fx-cursor: not-allowed;
+
+    -fx-background-color: #800000;
+    -fx-text-fill: #b96666;
 }
 
 .label {
@@ -46,6 +65,10 @@
     -fx-font-family: sans-serif;
     -fx-text-alignment: center;
 
+}
+
+.accordion .titled-pane {
+    -fx-background-color: linear-gradient(#00247d 0%, #0035bd 100%);
 }
 
 .choice-box {
@@ -75,10 +98,14 @@
 
 .table-view .column-header {
     -fx-background-color: transparent;
+    -fx-font-size: 18px;
+
 }
 
 .table-view .table-cell {
     -fx-text-fill: #ffffff;
+    -fx-font-size: 18px;
+
 }
 
 .table-row-cell {
