@@ -167,8 +167,6 @@ public class GameBoard implements Serializable {
 	 * @param category - of desired category
 	 */
 	public void makeCompleted(int question, int category) { _completed[question][category] = true; }
-	
-	public void makeCorrect(int question, int category) { _correct[question][category] = true; }
 
 	/**
 	 * Returns just the first 5 categories on the list to display on the board
