@@ -6,7 +6,7 @@ import gamelogic.ldrboard.LeaderBoard;
 import gamelogic.textToSpeech.TextToSpeechThread;
 import gamelogic.textToSpeech.ThreadCompleteListener;
 import gamelogic.textToSpeech.NotifyingThread;
-
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import javafx.event.ActionEvent;
@@ -33,6 +33,7 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -85,13 +86,13 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     @FXML
     private ChoiceBox<String> selectCategory;
     @FXML
-    private ListView<String> categoryListView;
+    private ListView<Label> categoryListView = new ListView<>();
     
     private IntAlert alert = new IntAlert();
     
     // Fields for model
     private GameBoard _gameBoard;
-    private List<String> _categories;
+    private List<String> _categories = new ArrayList<>();
     private String _questionStr;
     private int _questionIndex;
     private int _categoryIndex;
@@ -99,27 +100,6 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
     private static final Integer STARTTIME = 8;
     private IntegerProperty timerSeconds = new SimpleIntegerProperty(STARTTIME*100);
     private Timeline timeline = new Timeline();
-
-
-    public void handleCategorySelected() {
-        // Get the String representing the name of selected category
-        String categoryName = selectCategory.getValue();
-        categoryListView.getItems().add(categoryName);
-
-    }
-
-    public void handleCategoriesFinalised() {
-
-        _categories = categoryListView.getItems();
-        // Reflect any loaded state in GUI
-        updateBoardState();
-
-        // Make category selector BorderPane opacity = 0
-        categoryPane.setOpacity(0);
-        // Make question presenter BorderPane opacity = 1, and move to front
-        selectionPane.setOpacity(1);
-        selectionPane.toFront();
-    }
 
     /**
      * Handles events caused by any of the clue buttons.
@@ -245,6 +225,7 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
             resultLabel.setText("Your answer was correct! Good job!");
             NotifyingThread ttsThread = new TextToSpeechThread("Your answer was correct!");
             ttsThread.start();
+            _gameBoard.makeCorrect(_questionIndex, _categoryIndex);
             
         } else {
             resultLabel.setText("You were not correct.");
@@ -402,6 +383,11 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
             	// Disable if it has been completed
                 Button clueBtn = (Button) node;
                 clueBtn.setDisable(true);
+                if (_gameBoard.isCorrect(clueVal-1, catVal)) {
+                	clueBtn.setStyle("-fx-background-color: #338333; -fx-text-fill: #e6f0e6;");
+                } else {
+                	clueBtn.setStyle("-fx-background-color: #800000; -fx-text-fill: #b96666;");
+                }
                 // Check if it is non-first row button that has no higher un-attempted clues
             } else if (clueVal != 1) {
                 if (_gameBoard.isCompleted(clueVal-2,catVal)) {
@@ -443,18 +429,11 @@ public class GameMenuController implements Initializable, ThreadCompleteListener
         // Make call to the GameBoard object to get any saved winnings
         int winnings = _gameBoard.getWinnings();
         winningsLabel.setText("Current Winnings: $" + Integer.toString(winnings));
-        // Make call to the GameBoard object to get all the actual categories
+        
+        // Make call to the GameBoard object to get all the names of categories
         _categories = _gameBoard.getCategoryNames();
-        // Reflect any loaded state in GUI
+        // Reflect loaded state in GUI
         updateBoardState();
-
-        // Initialise QuestionBank object for use of PracticeMenu
-        QuestionBank QBank = new QuestionBank();
-        // Make call to the QuestionBank object to get all the names of categories
-        List<String> allCategories = QBank.getAllCategories();
-        // Adds all the category names to the ChoiceBox for selection
-        selectCategory.getItems().addAll(allCategories);
-
     }
 
 

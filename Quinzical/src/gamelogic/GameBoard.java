@@ -20,6 +20,7 @@ public class GameBoard implements Serializable {
 	private int _winnings = 0;
 	private QuestionBank _qBank;
 	private boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
+	private boolean[][] _correct = new boolean [5][5];
 	private boolean _intSectionAnnounced=false;
 
 	/**
@@ -128,7 +129,7 @@ public class GameBoard implements Serializable {
 		_intSectionAnnounced=false;
 	}
 	
-//GETTERS
+	//GETTERS
 	
 	public int getWinnings() {
 		return _winnings;
@@ -167,6 +168,8 @@ public class GameBoard implements Serializable {
 	 * @param category - of desired category
 	 */
 	public void makeCompleted(int question, int category) { _completed[question][category] = true; }
+	
+	public void makeCorrect(int question, int category) { _correct[question][category] = true; }
 
 	/**
 	 * Returns just the first 5 categories on the list to display on the board
@@ -180,7 +183,7 @@ public class GameBoard implements Serializable {
 	 * Getter method
 	 * @return questionBank
 	 */
-	private QuestionBank getQBank() {
+	public QuestionBank getQBank() {
 		return _qBank;
 	}
 	
@@ -214,6 +217,11 @@ public class GameBoard implements Serializable {
 			}
 		}
 		return categoriesComplete;
+	}
+
+	public boolean isCorrect(int clueVal, int catVal) {
+		
+		return _correct[clueVal][catVal];
 	}
 
 }
