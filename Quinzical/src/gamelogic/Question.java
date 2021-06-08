@@ -24,9 +24,8 @@ public class Question implements Serializable{
 	 */
 	public Question(String question, String answer, String whatX) {
 		
-		String normalised = Normalizer.normalize(answer, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
 		_question = question;
-		_answer = normalised.split("/");
+		_answer = answer.split("/");
 		_whatX = whatX;
 	}
 	
@@ -35,7 +34,6 @@ public class Question implements Serializable{
 	 * @return string of the clue
 	 */
 	public String ask() {
-		say(_question);
 		return _question;
 	}
 	
@@ -49,22 +47,10 @@ public class Question implements Serializable{
 		
 		for (int i=0 ; i<_answer.length; i++) {
 			if (answer.equalsIgnoreCase(_answer[i])) {//Answer was correct			
-				say("Your answer was correct!");
 				return true;
 			}
 		}
-		say("Sorry, but that was incorrect");
 		return false;
-	}
-
-	/**
-	 *  Create tts intermediate which creates new Thread to speak a message
-	 * @param message - what needs to be said
-	 */
-	private void say(String message) {
-		TtsHandler tts = new TtsHandler();
-		tts.loadSpeed();
-		tts.say(message);
 	}
 
 	/**

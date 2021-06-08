@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="anchor" prefHeight="400.0" prefWidth="600.0" stylesheets="@../../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.PracticeMenuController">
+<AnchorPane fx:id="anchor" prefHeight="720.0" prefWidth="1280.0" stylesheets="@../../css/quinzicalStyles.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.PracticeMenuController">
    <children>
       <BorderPane prefHeight="100.0" prefWidth="600.0" AnchorPane.bottomAnchor="300.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
-            <Label alignment="CENTER" layoutX="223.0" layoutY="39.0" text="Practice Module" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" layoutX="223.0" layoutY="39.0" text="Practice Module" BorderPane.alignment="TOP_CENTER">
                <font>
-                  <Font size="36.0" />
+                  <Font size="48.0" />
                </font>
                <BorderPane.margin>
-                  <Insets right="50.0" />
+                  <Insets right="50.0" top="40.0" />
                </BorderPane.margin>
             </Label>
          </center>
@@ -22,18 +22,27 @@
          	<Button fx:id="backBtn" mnemonicParsing="false" onAction="#handleBackBtnClick" text="←" BorderPane.alignment="TOP_LEFT">
                <BorderPane.margin>
                   <Insets left="15.0" top="15.0" />
-               </BorderPane.margin></Button>
+               </BorderPane.margin>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font></Button>
          </left>
       </BorderPane>
-      <Separator prefHeight="0.0" prefWidth="600.0" AnchorPane.topAnchor="90.0" />
-      <StackPane layoutY="100.0" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+      <Separator prefHeight="0.0" prefWidth="1280.0" AnchorPane.topAnchor="135.0" />
+      <StackPane layoutY="135.0" prefHeight="585.0" prefWidth="1280.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="135.0">
          <children>
             <BorderPane fx:id="correctPane" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
                <center>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" text="Your answer was correct! Good job!" />
-                        <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Ok" />
+                        <Label alignment="CENTER" text="Your answer was correct! Good job!">
+                           <font>
+                              <Font size="26.0" />
+                           </font></Label>
+                        <Button mnemonicParsing="false" onAction="#handleResetBtnClick" text="Ok">
+                           <font>
+                              <Font size="18.0" />
+                           </font></Button>
                      </children>
                      <BorderPane.margin>
                         <Insets bottom="50.0" />
@@ -44,6 +53,9 @@
                      <BorderPane.margin>
                         <Insets top="15.0" />
                      </BorderPane.margin>
+                     <font>
+                        <Font size="30.0" />
+                     </font>
                   </Label>
                </top>
             </BorderPane>
@@ -51,11 +63,20 @@
                <center>
                   <VBox fx:id="incorrectLabels" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label alignment="CENTER" text="Your answer was incorrect." />
-                        <Label fx:id="hintLabel" text="Hint: Remember to spell it correctly!" />
+                        <Label alignment="CENTER" text="Your answer was incorrect.">
+                           <font>
+                              <Font size="26.0" />
+                           </font></Label>
+                        <Label fx:id="hintLabel" text="Hint: Remember to spell it correctly!">
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
                         <HBox fx:id="incorrectBtns" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                            <children>
-                              <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#handleRetryBtnClick" text="Try again?" />
+                              <Button fx:id="retryBtn" mnemonicParsing="false" onAction="#handleRetryBtnClick" text="Try again?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
                      </children>
@@ -67,8 +88,11 @@
                <top>
                   <Label text="Result" textFill="RED" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets bottom="15.0" top="15.0" />
+                        <Insets bottom="-50.0" top="15.0" />
                      </BorderPane.margin>
+                     <font>
+                        <Font size="30.0" />
+                     </font>
                   </Label>
                </top>
             </BorderPane>
@@ -76,24 +100,54 @@
 		           <top>
 		              <Label text="Clue" textFill="RED" BorderPane.alignment="CENTER">
 		                 <BorderPane.margin>
-		                    <Insets top="15.0" />
+		                    <Insets bottom="-125.0" top="15.0" />
 		                 </BorderPane.margin>
+                     <font>
+                        <Font size="30.0" />
+                     </font>
 		              </Label>
 		           </top>
 		           <center>
 		              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Label fx:id="clueText" text="This is the clue." />
+                        <Label fx:id="clueText" text="This is the clue.">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="10.0" />
+                           </VBox.margin></Label>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="5.0">
                            <children>
-                              <Label fx:id="promptLabel" alignment="CENTER" text="Prompt: " />
-                              <TextField fx:id="answerField" alignment="CENTER" promptText="Type answer here" />
+                              <Label fx:id="promptLabel" alignment="CENTER" text="Prompt: ">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font></Label>
+                              <TextField fx:id="answerField" alignment="CENTER" onKeyPressed="#handleSubmitKey" promptText="Type answer here">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></TextField>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="110.0" text="Repeat Clue" />
-                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="110.0" text="Submit Answer" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ā" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ē" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ī" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ō" />
+                              <Button mnemonicParsing="false" onAction="#handleLetterAdd" text="ū" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                           <children>
+                              <Button fx:id="repeatBtn" mnemonicParsing="false" onAction="#handleRepeatBtnClick" prefWidth="180.0" text="Repeat Clue">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#handleSubmitBtnClick" prefWidth="210.0" text="Submit Answer">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
                      </children></VBox>
@@ -101,17 +155,20 @@
 		    </BorderPane>
             <BorderPane fx:id="selectorPane" prefHeight="200.0" prefWidth="200.0">
                <center>
-                  <ChoiceBox fx:id="selectCategory" onAction="#handleCategorySelected" prefWidth="150.0" BorderPane.alignment="CENTER">
+                  <ChoiceBox fx:id="selectCategory" onAction="#handleCategorySelected" prefHeight="30.0" prefWidth="250.0" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets bottom="50.0" />
+                        <Insets />
                      </BorderPane.margin>
                   </ChoiceBox>
                </center>
                <top>
                   <Label text="Category Selection" textFill="RED" BorderPane.alignment="CENTER">
                      <BorderPane.margin>
-                        <Insets top="15.0" />
+                        <Insets bottom="-150.0" top="15.0" />
                      </BorderPane.margin>
+                     <font>
+                        <Font size="26.0" />
+                     </font>
                   </Label>
                </top>
             </BorderPane>

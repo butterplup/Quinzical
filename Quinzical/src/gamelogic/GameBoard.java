@@ -17,9 +17,10 @@ import java.util.List;
  */
 public class GameBoard implements Serializable {
 	private static final long serialVersionUID = 1L;
-	int _winnings = 0;
-	QuestionBank _qBank;
-	boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
+	private int _winnings = 0;
+	private QuestionBank _qBank;
+	private boolean[][] _completed = new boolean[5][5]; // 0=incomplete.1=completed.
+	private boolean _intSectionAnnounced=false;
 
 	/**
 	 * The GameBoard constructor initiliases the _qBank variable containing
@@ -64,10 +65,10 @@ public class GameBoard implements Serializable {
 	 * Reads out a desired string message to user
 	 * @param message - string they want read out
 	 */
-	public void say(String message) {
-		TtsHandler speaker = new TtsHandler();
-		speaker.say(message);
-	}
+//	public void say(String message) {
+//		TtsHandler speaker = new TtsHandler();
+//		speaker.say(message);
+//	}
 	
 	/*
 	 * if fresh instance, do nothing. if saved state exists, update _winnings,
@@ -84,6 +85,7 @@ public class GameBoard implements Serializable {
 				_winnings = loadedGBoard.getWinnings();
 				_completed = loadedGBoard.getCompleted();
 				_qBank = loadedGBoard.getQBank();
+				_intSectionAnnounced = loadedGBoard.getIntSectionAnnounced();
 				in.close();
 				fileIn.close();
 			} catch (IOException i) {
@@ -93,7 +95,6 @@ public class GameBoard implements Serializable {
 				c.printStackTrace();
 				return;
 			}
-
 		}
 		else
 			return;
@@ -124,9 +125,10 @@ public class GameBoard implements Serializable {
 		_winnings=0;
 		_completed = new boolean[5][5];
 		_qBank.shuffle();
+		_intSectionAnnounced=false;
 	}
 	
-//GETTERS
+	//GETTERS
 	
 	public int getWinnings() {
 		return _winnings;
@@ -178,8 +180,40 @@ public class GameBoard implements Serializable {
 	 * Getter method
 	 * @return questionBank
 	 */
-	private QuestionBank getQBank() {
+	public QuestionBank getQBank() {
 		return _qBank;
+	}
+	
+	public boolean intSectionEnabled() {
+		return (categoriesCompleted()==2);
+	}
+	
+	public void setIntSectionAnnounced(boolean bool) {
+		_intSectionAnnounced = bool;
+	}
+	
+	public boolean getIntSectionAnnounced() {
+		return _intSectionAnnounced;
+	}
+	
+	public int categoriesCompleted() {
+		int categoriesComplete=0;
+		//loop through categories/columns
+		for (int i=0; i<5; i++)
+		{
+			int questionsComplete=0;
+			//loop through questions/rows
+			for (int j=0; j<5; j++) {
+				if (_completed[j][i])
+				{
+					questionsComplete++;
+				}
+			}
+			if (questionsComplete==5) {
+				categoriesComplete++;
+			}
+		}
+		return categoriesComplete;
 	}
 
 }

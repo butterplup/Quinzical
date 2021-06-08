@@ -1,12 +1,18 @@
 package application.view;
 
 import gamelogic.Category;
+import gamelogic.GameBoard;
 import gamelogic.QuestionBank;
-
+import gamelogic.textToSpeech.NotifyingThread;
+import gamelogic.textToSpeech.TextToSpeechThread;
+import gamelogic.textToSpeech.ThreadCompleteListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -18,7 +24,7 @@ import java.util.ResourceBundle;
 import application.Main;
 import javafx.scene.layout.VBox;
 
-public class PracticeMenuController implements Initializable {
+public class PracticeMenuController implements Initializable, ThreadCompleteListener{
     // For choosing the first index of the category
     private final int Q_INDEX = 1;
     // FXML specific fields loaded in from file
@@ -48,6 +54,8 @@ public class PracticeMenuController implements Initializable {
     private TextField answerField;
     @FXML
     private Button retryBtn;
+    @FXML
+    private Button repeatBtn;
     // Fields for use as model
     private QuestionBank _practiceQBank;
     private Category _selectedCategory;
@@ -82,6 +90,12 @@ public class PracticeMenuController implements Initializable {
         clueText.setText(_questionStr);
         promptLabel.setText(_selectedCategory.getQPrompt(Q_INDEX) + ": ");
 
+        repeatBtn.setDisable(true);
+        
+        NotifyingThread ttsThread = new TextToSpeechThread(_questionStr);
+        ttsThread.addListener(this); // add ourselves as a listener
+        ttsThread.start();           // Start the Thread
+        
         // Make category selector BorderPane opacity = 0
         selectorPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1, and move to front
@@ -113,6 +127,30 @@ public class PracticeMenuController implements Initializable {
      */
     public void handleRepeatBtnClick() {
         _selectedCategory.ask(1);
+        repeatBtn.setDisable(true);
+        NotifyingThread ttsThread = new TextToSpeechThread(_questionStr);
+        ttsThread.addListener(this); // add ourselves as a listener
+        ttsThread.start();           // Start the Thread
+    }
+
+    /**
+     * Adds the vowel with macron of the corresponding button to the textfield
+     * @param event - event of the button clicked
+     */
+    public void handleLetterAdd(ActionEvent event) {
+        Button clickedBtn = (Button) event.getSource();
+        String letter = clickedBtn.getText();
+        answerField.setText(answerField.getText() + letter);
+    }
+
+    /**
+     * Checks to see if user hit the enter key as another option for submitting
+     * @param keyEvent - fired when a key has been pressed
+     */
+    public void handleSubmitKey(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            this.handleSubmitBtnClick();
+        }
     }
 
     /**
@@ -139,8 +177,15 @@ public class PracticeMenuController implements Initializable {
             } else if (_wrongCount == 3) {
                 // No more attempts, show full answer with clue
                 hintLabel.setText("No more attempts.");
-                incorrectLabels.getChildren().add(2,new Label("The clue was: " + _questionStr));
-                incorrectLabels.getChildren().add(3,new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX)));
+                
+                Label clueLabel = new Label("The clue was: " + _questionStr);
+                Label answerLabel = new Label("The correct answer was: " + _selectedCategory.getQAnswer(Q_INDEX));
+                
+                clueLabel.setStyle("-fx-font-size: 20px;");
+                answerLabel.setStyle("-fx-font-size: 20px;");
+                
+                incorrectLabels.getChildren().add(2,clueLabel);
+                incorrectLabels.getChildren().add(3,answerLabel);
                 // Cannot attempt again
                 retryBtn.setDisable(true);
                 // Offer the option to return to menu
@@ -192,11 +237,21 @@ public class PracticeMenuController implements Initializable {
 
         // Initialise QuestionBank object for use of PracticeMenu
         _practiceQBank = new QuestionBank();
+        
+        GameBoard _gameBoard = new GameBoard();
+    	if (_gameBoard.intSectionEnabled()) {
+    		_practiceQBank.addIntSection();
+    	}
+    	
     	// Make call to the QuestionBank object to get all the names of categories
         List<String> allCategories = _practiceQBank.getAllCategories();
         // Adds all the category names to the ChoiceBox for selection
         selectCategory.getItems().addAll(allCategories);
-    	
+        
     }
-    
+
+	@Override
+	public void notifyOfThreadComplete(Thread thread) {
+		  repeatBtn.setDisable(false);
+	}
 }

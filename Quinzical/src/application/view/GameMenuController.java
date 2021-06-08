@@ -1,17 +1,39 @@
 package application.view;
 
 import gamelogic.GameBoard;
+import gamelogic.QuestionBank;
 import gamelogic.ldrboard.LeaderBoard;
+import gamelogic.textToSpeech.TextToSpeechThread;
+import gamelogic.textToSpeech.ThreadCompleteListener;
+import gamelogic.textToSpeech.NotifyingThread;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 
+import javafx.util.Duration;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -19,10 +41,10 @@ import application.Main;
 
 /**
  * The controller class for the game module GUI
- * @author jh
+ * @author jh and bs
  *
  */
-public class GameMenuController implements Initializable {
+public class GameMenuController implements Initializable, ThreadCompleteListener{
 
 	// FXML Fields
     @FXML
@@ -35,6 +57,8 @@ public class GameMenuController implements Initializable {
     private BorderPane resultPane;
     @FXML
     private BorderPane completedPane;
+    @FXML
+    private BorderPane categoryPane;
     @FXML
     private GridPane clueGrid;
     @FXML
@@ -51,14 +75,31 @@ public class GameMenuController implements Initializable {
     private TextField inputNameField;
     @FXML
     private Button subGmRcrdBtn;
+    @FXML
+    private Label timerLabel;
+    @FXML
+    private ProgressBar timerBar;
+    @FXML
+    private Button submitBtn;
+    @FXML
+    private Button repeatBtn;
+    @FXML
+    private ChoiceBox<String> selectCategory;
+    @FXML
+    private ListView<Label> categoryListView = new ListView<>();
+    
+    private IntAlert alert = new IntAlert();
     
     // Fields for model
     private GameBoard _gameBoard;
-    private List<String> _categories;
+    private List<String> _categories = new ArrayList<>();
     private String _questionStr;
     private int _questionIndex;
     private int _categoryIndex;
     private boolean _remaining = true;
+    private static final Integer STARTTIME = 8;
+    private IntegerProperty timerSeconds = new SimpleIntegerProperty(STARTTIME*100);
+    private Timeline timeline = new Timeline();
 
     /**
      * Handles events caused by any of the clue buttons.
@@ -83,23 +124,92 @@ public class GameMenuController implements Initializable {
         checkRemaining();
         // Updates button state to reflect question attempts
         updateBoardState();
-
-        _questionStr = _gameBoard.ask(_questionIndex, _categoryIndex);
-        promptLabel.setText(_gameBoard.getPrompt(_questionIndex, _categoryIndex));
-
+        
         // Make category selector BorderPane opacity = 0
         selectionPane.setOpacity(0);
         // Make question presenter BorderPane opacity = 1
         cluePane.setOpacity(1);
         cluePane.toFront();
+        
+        submitBtn.setDisable(true);
+        repeatBtn.setDisable(true);
+
+        //say the clue
+        _questionStr = _gameBoard.ask(_questionIndex, _categoryIndex);
+        
+        //freeze timer progressbar and label at maximum.
+        timerSeconds.set((STARTTIME)*100);
+        
+        NotifyingThread ttsThread = new TextToSpeechThread(_questionStr);
+        ttsThread.addListener(this); // add ourselves as a listener
+        ttsThread.start();           // Start the Thread
+
+        promptLabel.setText(_gameBoard.getPrompt(_questionIndex, _categoryIndex));
+
 
     }
 
-    /**
+	@Override
+	public void notifyOfThreadComplete(Thread thread) {
+		Platform.runLater(new Runnable() {
+			@Override
+			public void run(){
+				startTimer();
+			}
+		});
+        submitBtn.setDisable(false);
+        repeatBtn.setDisable(false);
+	}
+
+    private void startTimer() {
+    	
+    	if (timeline == null || timeline.getStatus()!= Timeline.Status.RUNNING) {	//dont touch timer if its still going
+    		timerBar.progressProperty().bind(
+        	        timerSeconds.divide(STARTTIME*100.0));
+        	timerLabel.textProperty().bind(timerSeconds.divide(100).asString());
+    		
+        	timeline.setOnFinished((new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(final ActionEvent actionEvent) {
+                    handleSubmitBtnClick();
+                    }
+    		}));
+        	
+    		timeline.getKeyFrames().add(
+    				new KeyFrame(Duration.seconds(STARTTIME+1),
+    				new KeyValue(timerSeconds, 0)));
+    		timeline.playFromStart();
+    	}
+	}
+
+	/**
      * Repeats the clue message through tts
      */
-    public void handleRepeatBtnClick() {
-        _gameBoard.say(_questionStr);
+	public void handleRepeatBtnClick() {
+		repeatBtn.setDisable(true);
+		NotifyingThread ttsThread = new TextToSpeechThread(_questionStr);
+		ttsThread.addListener(this); // add ourselves as a listener
+		ttsThread.start(); // Start the Thread
+	}
+
+    /**
+     * Adds the vowel with macron of the corresponding button to the textfield
+     * @param event - event of the button clicked
+     */
+	public void handleLetterAdd(ActionEvent event) {
+	    Button clickedBtn = (Button) event.getSource();
+	    String letter = clickedBtn.getText();
+        answerField.setText(answerField.getText() + letter);
+    }
+
+    /**
+     * Checks to see if user hit the enter key as another option for submitting
+     * @param keyEvent - fired when a key has been pressed
+     */
+	public void handleSubmitKey(KeyEvent keyEvent) {
+	    if (keyEvent.getCode() == KeyCode.ENTER) {
+	        this.handleSubmitBtnClick();
+        }
     }
 
     /**
@@ -113,8 +223,13 @@ public class GameMenuController implements Initializable {
         // Check if correct
         if (_gameBoard.answer(_questionIndex, _categoryIndex, answer)) {
             resultLabel.setText("Your answer was correct! Good job!");
+            NotifyingThread ttsThread = new TextToSpeechThread("Your answer was correct!");
+            ttsThread.start();
+            
         } else {
             resultLabel.setText("You were not correct.");
+            NotifyingThread ttsThread = new TextToSpeechThread("Sorry, but that was incorrect!");
+            ttsThread.start();
         }
         // Change the value of the winnings appropriately
         int winnings = _gameBoard.getWinnings();
@@ -124,7 +239,8 @@ public class GameMenuController implements Initializable {
         resultPane.setOpacity(1);
         // Bring to front so user can interact with its nodes
         resultPane.toFront();
-
+        
+        timeline.stop();
     }
 
     /**
@@ -134,13 +250,18 @@ public class GameMenuController implements Initializable {
      */
     public void handleOkBtnClick() {
         resultPane.setOpacity(0);
-
+        
+        if (_gameBoard.intSectionEnabled()&&!_gameBoard.getIntSectionAnnounced()){
+        	alert.showAndWait();
+        	_gameBoard.setIntSectionAnnounced(true);
+        }
         //If any questions remain then
         if (_remaining) {
         	// Show user the clue selection screen
             selectionPane.setOpacity(1);
             selectionPane.toFront();
-        } else {
+        } 
+        else {
         	// Otherwise display the final score, and tell them they've finished, add this game to leaderboard
         	int winnings = _gameBoard.getWinnings();
             winningsLabel.setText("Final Winnings: $" + Integer.toString(winnings));
@@ -150,6 +271,7 @@ public class GameMenuController implements Initializable {
             completedPane.toFront();
         }
     }
+    
     /**
      * Meant to take user back to main menu screen.
      * Handles the back button events.
@@ -158,6 +280,7 @@ public class GameMenuController implements Initializable {
 
         try {
         	_gameBoard.saveState();
+        	timeline.stop();
         	// Load the main menu layout
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("view/FXML/MainMenu.fxml"));
             AnchorPane rootLayout = loader.load();
@@ -169,6 +292,7 @@ public class GameMenuController implements Initializable {
         	// Print in case of any errors
             e.printStackTrace();
         } 
+        
     }
 
     /**
@@ -194,6 +318,12 @@ public class GameMenuController implements Initializable {
             e.printStackTrace();
         }
 
+    }
+
+    public void leaderbrdNameSubmitKey(KeyEvent keyEvent) {
+        if (keyEvent.getCode() == KeyCode.ENTER) {
+            this.handleSubGmRcrdBtnClick();
+        }
     }
 
     public void handleSubGmRcrdBtnClick() {
@@ -252,6 +382,7 @@ public class GameMenuController implements Initializable {
             	// Disable if it has been completed
                 Button clueBtn = (Button) node;
                 clueBtn.setDisable(true);
+                clueBtn.setStyle("-fx-background-color: #800000; -fx-text-fill: #b96666;");
                 // Check if it is non-first row button that has no higher un-attempted clues
             } else if (clueVal != 1) {
                 if (_gameBoard.isCompleted(clueVal-2,catVal)) {
@@ -287,15 +418,18 @@ public class GameMenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+    	
     	// Initialise and load GameBoard object
         _gameBoard = new GameBoard();
         // Make call to the GameBoard object to get any saved winnings
         int winnings = _gameBoard.getWinnings();
         winningsLabel.setText("Current Winnings: $" + Integer.toString(winnings));
-        // Make call to the GameBoard object to get all the actual categories
+        
+        // Make call to the GameBoard object to get all the names of categories
         _categories = _gameBoard.getCategoryNames();
-        // Reflect any loaded state in GUI
+        // Reflect loaded state in GUI
         updateBoardState();
-
     }
+
+
 }
